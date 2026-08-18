@@ -1,6 +1,6 @@
 {
   "name": "rust-overlay",
-  "version": "0.1.0",
+  "version": "0.0.1-alpha.1",
   "private": true,
   "description": "External overlay for Rust: aim dot, on-screen inventory reading, recycler yield calculator.",
   "main": "src/main/main.js",

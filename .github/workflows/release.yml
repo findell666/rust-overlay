@@ -49,3 +49,6 @@ jobs:
             dist/*.exe
           draft: true
           generate_release_notes: true
+          # A tag carrying a prerelease identifier — v0.0.1-alpha.1 — is marked as such on
+          # GitHub, so it never becomes the "latest release" people land on by default.
+          prerelease: ${{ contains(github.ref_name, '-') }}

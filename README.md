@@ -46,6 +46,10 @@ borderless-windowed even with "fullscreen" ticked; if the overlay never appears,
 
 ## Install
 
+> **Alpha.** It works, and it has been measured rather than guessed at, but it has been used
+> by one person on one screen. Expect to recalibrate, and expect the odd item to be read wrong
+> — the debug panel exists precisely so that costs you a click.
+
 Grab the latest build from the [Releases](../../releases) page:
 
 - `RustOverlay-x.y.z-setup.exe` — installer, adds a Start-menu shortcut
