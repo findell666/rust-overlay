@@ -1015,10 +1015,9 @@ function buildZoneCard(def, zone) {
   out.className = 'zone-card__out';
 
   const result = state.results[def.id];
-  if (result?.busy) {
-    go.disabled = true;
-    go.textContent = 'Analysing…';
-  }
+  // Disabled but not relabelled: the spinner in the card says it is working, and a button
+  // that changes width mid-click makes the card jump.
+  if (result?.busy) go.disabled = true;
   renderResult(out, result, slots, seconds, iconSizeFor(zone));
 
   go.addEventListener('click', () => calculateZone(def, zone));
@@ -1265,19 +1264,39 @@ function yieldSection(parent, label, entries, iconSize, onPick, compare = false)
 }
 
 /** Fills a card's output area: what was seen, what it recycles into, what is missing. */
+/** A turning ring and a line saying what is happening. */
+function spinner(label) {
+  const row = document.createElement('div');
+  row.className = 'spinner';
+
+  const ring = document.createElement('div');
+  ring.className = 'spinner__ring';
+
+  const text = document.createElement('span');
+  text.textContent = label;
+
+  row.append(ring, text);
+  return row;
+}
+
 function renderResult(out, result, slots, seconds, iconSize) {
   out.replaceChildren();
 
-  if (!result) {
-    out.textContent = `${slots} slots · ${slots * seconds} s if all full`;
+  // A calculation in progress adds a spinner; it does not clear the card. The previous
+  // result is what the user is still reading while the new one is computed, and wiping it
+  // makes the whole card flash empty for a second on every press.
+  if (result?.busy) out.append(spinner(result.status ?? 'Analysing…'));
+
+  if (result?.error) {
+    const failed = document.createElement('div');
+    failed.className = 'zone-card__meta';
+    failed.textContent = result.error;
+    out.append(failed);
     return;
   }
-  if (result.busy) {
-    out.textContent = result.text ?? 'Analysing…';
-    return;
-  }
-  if (result.error) {
-    out.textContent = result.error;
+
+  if (!result?.scan) {
+    if (!result?.busy) out.textContent = `${slots} slots · ${slots * seconds} s if all full`;
     return;
   }
 
@@ -1493,13 +1512,15 @@ function buildCraftCard(zone) {
   out.className = 'zone-card__out';
 
   const result = state.craftResult;
-  if (result?.busy) {
-    go.disabled = true;
-    go.textContent = 'Analysing…';
-    out.textContent = 'Capturing the screen…';
-  } else if (result?.error) {
-    out.textContent = result.error;
-  } else if (result) {
+  if (result?.busy) out.append(spinner(result.status ?? 'Analysing…'));
+  if (result?.busy) go.disabled = true;
+
+  if (result?.error) {
+    const failed = document.createElement('div');
+    failed.className = 'zone-card__meta';
+    failed.textContent = result.error;
+    out.append(failed);
+  } else if (result?.item || result?.text || result?.lines) {
     renderCraftResult(out, result, iconSizeFor(zone));
   } else {
     out.textContent =
@@ -1611,11 +1632,18 @@ function renderCraftHud() {
 }
 
 async function analyseCraft(zone) {
-  state.craftResult = { busy: true };
-  renderCraftHud();
+  // Same as the recycler: the card keeps what it was showing, with a spinner over it.
+  const previous = state.craftResult;
+  const progress = (status) => {
+    state.craftResult = { ...previous, busy: true, error: null, status };
+    renderCraftHud();
+  };
+
+  progress('Capturing the screen…');
 
   try {
     const shot = await window.overlay.captureScreen();
+    progress('Reading the card…');
     // Read, do not guess: the card prints the item's name, and a name looked up against the
     // whole index is a far safer answer than the nearest-looking icon.
     const card = await Recognizer.readCard(shot, zone, {
@@ -1737,11 +1765,19 @@ async function patchZone(id, patch) {
 }
 
 async function calculateZone(def, zone) {
-  state.results[def.id] = { busy: true, text: 'Capturing the screen…' };
-  renderRecycleHud();
+  // Spread the previous result rather than replacing it: the card keeps showing the last
+  // numbers, with a spinner over them, instead of going blank.
+  const previous = state.results[def.id];
+  const progress = (status) => {
+    state.results[def.id] = { ...previous, busy: true, error: null, status };
+    renderRecycleHud();
+  };
+
+  progress('Capturing the screen…');
 
   try {
     const shot = await window.overlay.captureScreen();
+    progress('Reading the slots…');
     const efficiency = efficiencyOf(zone);
     const seconds = secondsOf(zone);
 
