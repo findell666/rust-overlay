@@ -137,6 +137,11 @@ with its own card:
 - **Cycle time** — 5 s or 8 s, again the only two the game uses.
 - **Calculate** — takes one screenshot, reads the zone, and reports.
 
+**The overlay vanishes for a moment when you press it.** That is deliberate, not a glitch: it
+has to get its own cards and zone outlines out of the frame before photographing the screen,
+or it reads its own panels instead of your inventory. It comes back as soon as the shot is
+taken, with a spinner while the slots are being matched.
+
 The result is grouped:
 
 - **Detected** — what was recognised, with quantities. Click any of these to open its crafting

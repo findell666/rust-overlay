@@ -1264,6 +1264,17 @@ function yieldSection(parent, label, entries, iconSize, onPick, compare = false)
 }
 
 /** Fills a card's output area: what was seen, what it recycles into, what is missing. */
+/**
+ * Resolves once the browser has actually painted.
+ *
+ * Setting state and calling render() only queues work. Recognition then runs as one long
+ * synchronous block, so without waiting for a frame the spinner is put in the DOM and never
+ * drawn — the user sees the card jump straight from old result to new one. Two frames,
+ * because the first only guarantees the style was applied.
+ */
+const painted = () =>
+  new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
 /** A turning ring and a line saying what is happening. */
 function spinner(label) {
   const row = document.createElement('div');
@@ -1637,13 +1648,14 @@ async function analyseCraft(zone) {
   const progress = (status) => {
     state.craftResult = { ...previous, busy: true, error: null, status };
     renderCraftHud();
+    return painted();
   };
 
-  progress('Capturing the screen…');
+  await progress('Capturing the screen…');
 
   try {
     const shot = await window.overlay.captureScreen();
-    progress('Reading the card…');
+    await progress('Reading the card…');
     // Read, do not guess: the card prints the item's name, and a name looked up against the
     // whole index is a far safer answer than the nearest-looking icon.
     const card = await Recognizer.readCard(shot, zone, {
@@ -1771,13 +1783,19 @@ async function calculateZone(def, zone) {
   const progress = (status) => {
     state.results[def.id] = { ...previous, busy: true, error: null, status };
     renderRecycleHud();
+    return painted();
   };
 
-  progress('Capturing the screen…');
+  // The overlay hides itself for the screenshot — it must not photograph its own cards — so
+  // nothing of ours is on screen during the capture, spinner included. What the spinner can
+  // cover is the reading that follows, once the window is back. The ring keeps turning
+  // through it: a CSS transform animates off the main thread, so a busy matcher does not
+  // freeze it.
+  await progress('Capturing the screen…');
 
   try {
     const shot = await window.overlay.captureScreen();
-    progress('Reading the slots…');
+    await progress('Reading the slots…');
     const efficiency = efficiencyOf(zone);
     const seconds = secondsOf(zone);
 
