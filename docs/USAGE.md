@@ -140,7 +140,7 @@ with its own card:
 **The overlay vanishes for a moment when you press it.** That is deliberate, not a glitch: it
 has to get its own cards and zone outlines out of the frame before photographing the screen,
 or it reads its own panels instead of your inventory. It comes back as soon as the shot is
-taken, with a spinner while the slots are being matched.
+taken, and the card keeps showing the previous result until the new one replaces it.
 
 The result is grouped:
 

@@ -486,39 +486,6 @@ body {
   font-size: 10px;
 }
 
-/* Shown while a calculation runs, above whatever the card was already displaying. */
-.spinner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 7px;
-  color: var(--rust-amber);
-  font-size: 11px;
-}
-
-.spinner__ring {
-  width: 13px;
-  height: 13px;
-  flex: none;
-  border: 2px solid rgba(255, 255, 255, 0.16);
-  border-top-color: var(--rust-orange);
-  border-radius: 50%;
-  animation: spinner-turn 0.7s linear infinite;
-}
-
-@keyframes spinner-turn {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* A spinning ring is decoration; the sentence beside it carries the meaning. */
-@media (prefers-reduced-motion: reduce) {
-  .spinner__ring {
-    animation-duration: 2.4s;
-  }
-}
-
 .yield {
   display: flex;
   flex-wrap: wrap;

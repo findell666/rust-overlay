@@ -1015,8 +1015,7 @@ function buildZoneCard(def, zone) {
   out.className = 'zone-card__out';
 
   const result = state.results[def.id];
-  // Disabled but not relabelled: the spinner in the card says it is working, and a button
-  // that changes width mid-click makes the card jump.
+  // Disabled, not relabelled: a button that changes width mid-click makes the card jump.
   if (result?.busy) go.disabled = true;
   renderResult(out, result, slots, seconds, iconSizeFor(zone));
 
@@ -1264,40 +1263,13 @@ function yieldSection(parent, label, entries, iconSize, onPick, compare = false)
 }
 
 /** Fills a card's output area: what was seen, what it recycles into, what is missing. */
-/**
- * Resolves once the browser has actually painted.
- *
- * Setting state and calling render() only queues work. Recognition then runs as one long
- * synchronous block, so without waiting for a frame the spinner is put in the DOM and never
- * drawn — the user sees the card jump straight from old result to new one. Two frames,
- * because the first only guarantees the style was applied.
- */
-const painted = () =>
-  new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-
-/** A turning ring and a line saying what is happening. */
-function spinner(label) {
-  const row = document.createElement('div');
-  row.className = 'spinner';
-
-  const ring = document.createElement('div');
-  ring.className = 'spinner__ring';
-
-  const text = document.createElement('span');
-  text.textContent = label;
-
-  row.append(ring, text);
-  return row;
-}
-
 function renderResult(out, result, slots, seconds, iconSize) {
   out.replaceChildren();
 
-  // A calculation in progress adds a spinner; it does not clear the card. The previous
-  // result is what the user is still reading while the new one is computed, and wiping it
-  // makes the whole card flash empty for a second on every press.
-  if (result?.busy) out.append(spinner(result.status ?? 'Analysing…'));
-
+  // A calculation in progress leaves the card alone: the previous result stays up until the
+  // new one replaces it. There is no progress indicator, because there would be nowhere to
+  // put one — the overlay hides itself for the screenshot, so nothing of ours is on screen
+  // during the only phase slow enough to be worth reporting.
   if (result?.error) {
     const failed = document.createElement('div');
     failed.className = 'zone-card__meta';
@@ -1523,7 +1495,6 @@ function buildCraftCard(zone) {
   out.className = 'zone-card__out';
 
   const result = state.craftResult;
-  if (result?.busy) out.append(spinner(result.status ?? 'Analysing…'));
   if (result?.busy) go.disabled = true;
 
   if (result?.error) {
@@ -1643,19 +1614,13 @@ function renderCraftHud() {
 }
 
 async function analyseCraft(zone) {
-  // Same as the recycler: the card keeps what it was showing, with a spinner over it.
+  // Same as the recycler: the card keeps what it was showing until the new reading lands.
   const previous = state.craftResult;
-  const progress = (status) => {
-    state.craftResult = { ...previous, busy: true, error: null, status };
-    renderCraftHud();
-    return painted();
-  };
-
-  await progress('Capturing the screen…');
+  state.craftResult = { ...previous, busy: true, error: null };
+  renderCraftHud();
 
   try {
     const shot = await window.overlay.captureScreen();
-    await progress('Reading the card…');
     // Read, do not guess: the card prints the item's name, and a name looked up against the
     // whole index is a far safer answer than the nearest-looking icon.
     const card = await Recognizer.readCard(shot, zone, {
@@ -1778,24 +1743,13 @@ async function patchZone(id, patch) {
 
 async function calculateZone(def, zone) {
   // Spread the previous result rather than replacing it: the card keeps showing the last
-  // numbers, with a spinner over them, instead of going blank.
+  // numbers until the new ones are ready, instead of going blank.
   const previous = state.results[def.id];
-  const progress = (status) => {
-    state.results[def.id] = { ...previous, busy: true, error: null, status };
-    renderRecycleHud();
-    return painted();
-  };
-
-  // The overlay hides itself for the screenshot — it must not photograph its own cards — so
-  // nothing of ours is on screen during the capture, spinner included. What the spinner can
-  // cover is the reading that follows, once the window is back. The ring keeps turning
-  // through it: a CSS transform animates off the main thread, so a busy matcher does not
-  // freeze it.
-  await progress('Capturing the screen…');
+  state.results[def.id] = { ...previous, busy: true, error: null };
+  renderRecycleHud();
 
   try {
     const shot = await window.overlay.captureScreen();
-    await progress('Reading the slots…');
     const efficiency = efficiencyOf(zone);
     const seconds = secondsOf(zone);
 
