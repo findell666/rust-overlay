@@ -10,6 +10,7 @@ Everything the overlay does, and how to set it up. If you only read one section,
 - [Recycler calculator](#recycler-calculator)
 - [Crafting tree](#crafting-tree)
 - [Settings](#settings)
+  - [Tuning recognition](#tuning-recognition)
 - [Where your settings live](#where-your-settings-live)
 - [Troubleshooting](#troubleshooting)
 
@@ -207,8 +208,46 @@ inventory the app cannot see, and the panel reports how many there were.
 | **Open key** | The global hotkey. Select it, then press the key you want. |
 | **Show only over Rust** | Hide the overlay unless the game's window is in front. The line underneath shows the title of whatever is currently in front, and the title being looked for. |
 | **graphics.uiscale** | Must match the game exactly. Half of the calibration profile key. |
-| **Slot inset** | How much is trimmed from each side of a cell before reading it. Too low and slot borders or a green condition bar get into the crop; too high and the icon is cut. 18 % is the measured sweet spot. |
-| **Recognition tolerance** | How far a match may be before the slot is called unidentified. Lower means more "unidentified", higher means more wrong answers. 22 is a good default. |
+| **Slot inset** | How much is trimmed from each side of a cell before reading it. See below. |
+| **Recognition tolerance** | How far a match may be before the slot is called unidentified. See below. |
+
+### Tuning recognition
+
+The two defaults — **18 %** and **22** — were measured on real captures rather than picked as
+round numbers, and most people never need to touch them. Change them only if the debug panel
+says something is wrong, and change one at a time: press **Calculate** again on the same
+screen after each change, so you are comparing like with like.
+
+**Slot inset** is how much of each cell is thrown away before reading it, as a fraction of the
+cell. It exists because a cell is not an icon: it also holds the slot's border, and sometimes
+a green durability bar down the left edge.
+
+- *Too low* — borders and that green bar end up in the crop. The symptom is specific: items
+  with durability read badly while everything else is fine. At 14 % an electric fuse ranked
+  64th purely because of its condition bar; at 18 % it came first.
+- *Too high* — the icon itself is cut, and everything degrades at once.
+- *How to tell*: open **Show what was read** and look at the crops. You want the icon, framed
+  loosely, and nothing else. If you can see a frame edge or a coloured strip, raise it. If the
+  icon touches the crop edges, lower it.
+
+**Recognition tolerance** is the distance past which a match is refused rather than reported.
+On real captures a correct match sits at distance 3.5 in the median, but reaches 20.6 in one
+case in a hundred — while a wrong match is typically around 13. The two overlap, which is why
+this number cannot separate them on its own, and why the app also requires the best match to
+lead the runner-up by a clear margin.
+
+- *Lower* — fewer wrong items, more slots reported unidentified.
+- *Higher* — fewer unidentified slots, more wrong items in your totals.
+- Below about 20 you start refusing slots the app had actually got right. Above about 25 the
+  guard stops doing much.
+
+The debug panel prints both numbers for every slot: `fuse @ 3.4 lead 3.36` means it was
+matched at distance 3.4 and beat the second candidate by more than three times that distance.
+A slot rejected for being *ambiguous* rather than *too far* is one the tolerance would not have
+saved — it is the lead that refused it, and raising the tolerance will not bring it back.
+
+Remember that a rejected slot costs one click in the debug panel, while a wrong one silently
+corrupts the total. That is the trade the defaults are set for.
 
 ## Where your settings live
 

@@ -139,13 +139,15 @@ recognised nothing in game. Anything measured here is re-checked against a real 
 
 ## Tuning
 
-`config.json`, `recognition` section. The first two are also in the Settings menu.
+`config.json`, `recognition` section. The first two are also in the Settings menu, and the
+[usage guide](USAGE.md#tuning-recognition) covers when to change them and what the symptoms of
+each look like.
 
 | Key | What it does |
 | --- | --- |
-| `inset` | fraction trimmed from each side of a cell, to drop slot borders and the condition bar |
-| `maxDistance` | past this, a slot is unidentified rather than guessed |
-| `minLead` | how far ahead of the runner-up the best match must be, relative to its own distance |
+| `inset` | fraction trimmed from each side of a cell, to drop slot borders and the condition bar — 0.18 |
+| `maxDistance` | past this, a slot is unidentified rather than guessed — 22 |
+| `minLead` | how far ahead of the runner-up the best match must be, relative to its own distance — 0.25 |
 | `emptyVariance` | below this luminance spread, a slot is considered empty |
 | `countRegion` | where in the cell to look for the stack count |
 | `countBright` | luminance above which a pixel counts as stack text |

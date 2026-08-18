@@ -19,7 +19,9 @@
     // 0.18 the bar is gone and all four items in that inventory came back first.
     inset: 0.18,
     // Combined distance above which a slot is reported as unidentified rather than guessed.
-    maxDistance: 28,
+    // Measured on a real capture: a correct match sits at 3.5 in the median and reaches 20.6
+    // in 1 % of cases, so below about 20 the app starts refusing slots it had right.
+    maxDistance: 22,
     // How far ahead of the runner-up the best match must be, as a fraction of its own
     // distance, to be trusted.
     //

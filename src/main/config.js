@@ -31,8 +31,14 @@ const DEFAULTS = {
   // Tune `inset` if the matcher picks up slot borders, and `maxDistance` if too many slots
   // come back unidentified. See src/renderer/recognize.js.
   recognition: {
-    inset: 0.14,
-    maxDistance: 28,
+    // Both of these are what a real capture settled on, not round numbers. At 0.14 the green
+    // condition bar down the left edge of a slot still fell inside the crop and pushed an
+    // electric fuse to 64th place; at 0.18 the same inventory came back perfect. And a correct
+    // match sits at distance 3.5 in the median but reaches 20.6 in 1 % of cases, so anything
+    // under about 20 starts rejecting slots it had actually got right.
+    inset: 0.18,
+    maxDistance: 22,
+    minLead: 0.25,
     emptyVariance: 6,
   },
 
