@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- file: is needed for item icons, which are read straight from the game install. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: file:; style-src 'self'" />
+    <title>Rust Overlay</title>
+    <link rel="stylesheet" href="overlay.css" />
+  </head>
+  <body>
+    <!-- Always-on layer: visible even when the menu is closed and clicks pass through. -->
+    <div id="aim-dot" class="aim-dot" hidden></div>
+
+    <!-- Calibration rectangles and the recycler HUD cards, drawn over the game so you
+         can see exactly what the app sees. -->
+    <div id="zone-layer" class="zone-layer"></div>
+    <div id="hud-hint" class="hud-hint" hidden></div>
+
+    <!-- Craft tree of a single item, centred on screen, navigable across its siblings. -->
+    <div id="tree" class="tree" hidden></div>
+
+
+    <!-- Interactive layer: only reachable while the hotkey has opened the menu. -->
+    <div id="scrim" class="scrim" hidden>
+      <div id="panel" class="panel" role="dialog" aria-label="Overlay menu">
+        <header class="panel__head">
+          <span class="panel__title">RUST OVERLAY</span>
+          <span id="panel-crumb" class="panel__crumb"></span>
+          <span class="panel__hint">Drag the header to move · Esc to close</span>
+        </header>
+        <div id="panel-body" class="panel__body"></div>
+        <footer id="panel-foot" class="panel__foot"></footer>
+      </div>
+    </div>
+
+    <!-- Drag surface used by the zone calibrator. -->
+    <div id="capture-layer" class="capture-layer" hidden>
+      <div id="capture-rect" class="capture-rect" hidden></div>
+      <div id="capture-help" class="capture-help"></div>
+    </div>
+
+    <!-- Order matters: text.js reads Quantity, recognize.js reads both, overlay.js reads
+         Recognizer. -->
+    <script src="../shared/fingerprint.js"></script>
+    <script src="quantity.js"></script>
+    <script src="text.js"></script>
+    <script src="recognize.js"></script>
+    <script src="overlay.js"></script>
+  </body>
+</html>

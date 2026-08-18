@@ -1,0 +1,77 @@
+{
+  "name": "rust-overlay",
+  "version": "0.1.0",
+  "private": true,
+  "description": "External overlay for Rust: aim dot, on-screen inventory reading, recycler yield calculator.",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build-db": "node tools/build-item-db.mjs",
+    "audit-db": "node tools/audit-index.mjs",
+    "extract-bundle": "python3 tools/extract-bundle.py",
+    "replay": "node tools/replay-capture.mjs",
+    "sim-counts": "node tools/simulate-counts.mjs",
+    "test-quantity": "node tools/test-quantity.mjs",
+    "make-icon": "node tools/make-icon.mjs",
+    "dist": "node node_modules/electron-builder/cli.js --win --publish never",
+    "dist:dir": "node node_modules/electron-builder/cli.js --win --dir --publish never"
+  },
+  "devDependencies": {
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "koffi": "^3.1.5"
+  },
+  "license": "MIT",
+  "build": {
+    "appId": "dev.rustoverlay.app",
+    "productName": "Rust Overlay",
+    "copyright": "MIT",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "src/**/*",
+      "data/items.json",
+      "data/recipes.json",
+      "assets/icon.*",
+      "package.json",
+      "!**/*.map"
+    ],
+    "asarUnpack": [
+      "**/node_modules/koffi/**",
+      "**/node_modules/@koromix/**",
+      "assets/**"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "RustOverlay-${version}-portable.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "RustOverlay-${version}-setup.exe",
+      "shortcutName": "Rust Overlay"
+    }
+  },
+  "author": "Rust Overlay contributors"
+}

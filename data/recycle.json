@@ -1,0 +1,84 @@
+{
+  "_note": [
+    "Rendements du recycleur, par shortname Rust.",
+    "Deux colonnes mesurées : 0.4 (recycleur de safe zone) et 0.6 (recycleur de monument).",
+    "Le rendement 0.5 est interpolé entre les deux — c'est la seule valeur non mesurée.",
+    "guaranteed = toujours produit. chance = produit avec une probabilité (non garanti),",
+    "affiché séparément pour ne pas gonfler un total qu'on annoncerait comme certain.",
+    "Couverture actuelle : les 17 composants. Les items craftables suivront via",
+    "l'extraction de Bundles/shared/items.preload.bundle, dont les typetrees exposent",
+    "ingredients et scrapFromRecycle pour la totalité des items."
+  ],
+  "_source": "Component table published by howmuchscrap.com, cross-checked against the shortnames in data/items.json",
+  "efficiencies": [0.4, 0.6],
+  "items": {
+    "fuse": {
+      "0.4": { "guaranteed": { "scrap": 16 } },
+      "0.6": { "guaranteed": { "scrap": 24 } }
+    },
+    "rope": {
+      "0.4": { "guaranteed": { "cloth": 12 } },
+      "0.6": { "guaranteed": { "cloth": 18 } }
+    },
+    "sewingkit": {
+      "0.4": { "guaranteed": { "cloth": 8, "rope": 1 } },
+      "0.6": { "guaranteed": { "cloth": 12, "rope": 1 } }
+    },
+    "tarp": {
+      "0.4": { "guaranteed": { "cloth": 40 } },
+      "0.6": { "guaranteed": { "cloth": 60 } }
+    },
+    "metalblade": {
+      "0.4": { "guaranteed": { "scrap": 1, "metal.fragments": 12 } },
+      "0.6": { "guaranteed": { "scrap": 2, "metal.fragments": 18 } }
+    },
+    "techparts": {
+      "0.4": { "guaranteed": { "scrap": 16 }, "chance": { "metal.refined": 1 } },
+      "0.6": { "guaranteed": { "scrap": 24, "metal.refined": 1 } }
+    },
+    "sheetmetal": {
+      "0.4": { "guaranteed": { "scrap": 6, "metal.fragments": 80 }, "chance": { "metal.refined": 1 } },
+      "0.6": { "guaranteed": { "scrap": 9, "metal.fragments": 120, "metal.refined": 1 } }
+    },
+    "metalpipe": {
+      "0.4": { "guaranteed": { "scrap": 4 }, "chance": { "metal.refined": 1 } },
+      "0.6": { "guaranteed": { "scrap": 6, "metal.refined": 1 } }
+    },
+    "gears": {
+      "0.4": { "guaranteed": { "scrap": 8, "metal.fragments": 10 } },
+      "0.6": { "guaranteed": { "scrap": 12, "metal.fragments": 15 } }
+    },
+    "roadsigns": {
+      "0.4": { "guaranteed": { "scrap": 4 }, "chance": { "metal.refined": 1 } },
+      "0.6": { "guaranteed": { "scrap": 6, "metal.refined": 1 } }
+    },
+    "smgbody": {
+      "0.4": { "guaranteed": { "scrap": 12, "metal.refined": 1 } },
+      "0.6": { "guaranteed": { "scrap": 18, "metal.refined": 1 } }
+    },
+    "semibody": {
+      "0.4": { "guaranteed": { "scrap": 12, "metal.fragments": 60, "metal.refined": 1 } },
+      "0.6": { "guaranteed": { "scrap": 18, "metal.fragments": 90, "metal.refined": 1 } }
+    },
+    "riflebody": {
+      "0.4": { "guaranteed": { "scrap": 20, "metal.refined": 1 } },
+      "0.6": { "guaranteed": { "scrap": 30, "metal.refined": 1 } }
+    },
+    "metalspring": {
+      "0.4": { "guaranteed": { "scrap": 8 }, "chance": { "metal.refined": 1 } },
+      "0.6": { "guaranteed": { "scrap": 12, "metal.refined": 1 } }
+    },
+    "propanetank": {
+      "0.4": { "guaranteed": { "metal.fragments": 40 } },
+      "0.6": { "guaranteed": { "scrap": 1, "metal.fragments": 60 } }
+    },
+    "targeting.computer": {
+      "0.4": { "guaranteed": { "metal.fragments": 40, "techparts": 2 } },
+      "0.6": { "guaranteed": { "metal.fragments": 60, "metal.refined": 1, "techparts": 1 } }
+    },
+    "cctv.camera": {
+      "0.4": { "guaranteed": { "metal.refined": 1, "techparts": 1 } },
+      "0.6": { "guaranteed": { "metal.refined": 1, "techparts": 1 } }
+    }
+  }
+}

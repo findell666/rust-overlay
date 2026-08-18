@@ -1,0 +1,13 @@
+node_modules/
+dist/
+out/
+*.log
+
+# Local Electron distribution path, used only to work around an antivirus that
+# quarantines the one npm extracts. Machine-specific by nature.
+electron-dist.txt
+
+# Screenshots and analysis dumps produced while using the app: they are pictures of
+# someone's screen, and they do not belong in the repository.
+captures/
+logs/

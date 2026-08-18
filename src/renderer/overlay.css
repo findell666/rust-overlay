@@ -1,0 +1,746 @@
+/* The page itself is the transparent hole we look at the game through: nothing here may
+   paint a background except the panels that are meant to be visible. */
+
+:root {
+  --rust-orange: #ce422b;
+  --rust-amber: #cd9d63;
+  --ink: #0d0c0b;
+  --panel: rgba(20, 18, 17, 0.94);
+  --panel-edge: rgba(206, 66, 43, 0.55);
+  --text: #e8e2d9;
+  --text-dim: #9a9187;
+  --accent: #33ff99;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  user-select: none;
+  cursor: default;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* --- Aim dot ---------------------------------------------------------------------- */
+
+.aim-dot {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* --- Zone highlights -------------------------------------------------------------- */
+
+.zone-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.zone {
+  position: absolute;
+  border: 2px solid var(--rust-orange);
+  background: rgba(206, 66, 43, 0.08);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 0 24px rgba(206, 66, 43, 0.15);
+}
+
+.zone__label {
+  position: absolute;
+  top: -22px;
+  left: -2px;
+  padding: 1px 8px;
+  background: var(--rust-orange);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Slot grid drawn inside a zone, so a bad row/column count is obvious at a glance. */
+.zone__grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+}
+
+.zone__cell {
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+}
+
+/* --- Menu ------------------------------------------------------------------------- */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 100;
+}
+
+/* Absolutely placed rather than flex-centred: the panel remembers where it was dragged,
+   and the centred position is just the default the script computes on first open. */
+.panel {
+  position: absolute;
+  width: 460px;
+  max-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75);
+}
+
+.panel__head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: move;
+}
+
+.panel.is-dragging {
+  /* No transition on the shadow while dragging, and make the grab obvious. */
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.85);
+  border-color: var(--rust-orange);
+}
+
+.panel__title {
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--rust-orange);
+  font-size: 12px;
+}
+
+.panel__crumb {
+  font-size: 12px;
+  color: var(--rust-amber);
+  letter-spacing: 0.06em;
+}
+
+.panel__hint {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.panel__body {
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.panel__foot:not(:empty) {
+  padding: 10px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 12px;
+  background: none;
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.row:hover,
+.row.is-active {
+  background: rgba(206, 66, 43, 0.16);
+  border-left-color: var(--rust-orange);
+}
+
+.row:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.row__key {
+  width: 18px;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+}
+
+.row__label {
+  flex: 1;
+}
+
+.row__sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.row__value {
+  color: var(--rust-amber);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.row__value.is-on {
+  color: var(--accent);
+}
+
+/* Rows carrying a numeric control are divs, not buttons: the row itself is not clickable,
+   only the widgets inside it are. */
+.row--static {
+  cursor: default;
+}
+
+.num {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.num button {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
+  color: var(--text);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.num button:hover {
+  background: var(--rust-orange);
+  border-color: var(--rust-orange);
+  color: #fff;
+}
+
+.num__input {
+  width: 48px;
+  padding: 3px 4px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.num__input:focus {
+  outline: none;
+  border-color: var(--rust-orange);
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.num__unit {
+  width: 16px;
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.section-title {
+  padding: 14px 12px 6px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.fatal {
+  margin: 0;
+  padding: 12px;
+  max-height: 60vh;
+  overflow: auto;
+  background: rgba(206, 66, 43, 0.1);
+  border-left: 3px solid var(--rust-orange);
+  color: #ffb4a4;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  user-select: text;
+}
+
+/* --- Recycler HUD ------------------------------------------------------------------ */
+
+/* Cards sit in the zone layer, which is click-through — they opt back in individually
+   so the rest of the screen keeps passing clicks to the game. */
+/* Each zone carries its own card, pinned beside it so the reading stays next to what it
+   describes. Height is capped and the body scrolls, so a long result never runs off screen. */
+.zone-card {
+  position: absolute;
+  width: 300px;
+  max-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.zone-card__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: default;
+}
+
+.zone-card__toggle {
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-dim);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.zone-card__toggle:hover {
+  background: var(--rust-orange);
+  border-color: var(--rust-orange);
+  color: #fff;
+}
+
+.zone-card__scroll {
+  /* min-height: 0 is what actually makes this scroll. A flex child defaults to min-height
+     auto, so instead of overflowing it stretches its parent past max-height and the card
+     grows off screen — buttons included. */
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 9px 9px;
+}
+
+.zone-card__scroll::-webkit-scrollbar {
+  width: 9px;
+}
+
+.zone-card__scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.zone-card__scroll::-webkit-scrollbar-thumb {
+  background: rgba(206, 66, 43, 0.5);
+}
+
+.zone-card__scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--rust-orange);
+}
+
+.zone-card__title {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rust-amber);
+  font-size: 10px;
+}
+
+.zone-card__meta {
+  color: var(--text-dim);
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+
+.zone-card__label {
+  color: var(--text-dim);
+  font-size: 10px;
+  margin: 5px 0 2px;
+}
+
+.seg {
+  display: flex;
+  gap: 3px;
+}
+
+.seg button {
+  flex: 1;
+  padding: 3px 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.seg button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.seg button.is-on {
+  background: var(--rust-orange);
+  border-color: var(--rust-orange);
+  color: #fff;
+  font-weight: 600;
+}
+
+.zone-card__go {
+  width: 100%;
+  margin-top: 8px;
+  padding: 6px;
+  background: var(--rust-orange);
+  border: none;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.zone-card__go:hover {
+  background: #e04b31;
+}
+
+.zone-card__go:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  cursor: progress;
+}
+
+.zone-card__debug {
+  width: 100%;
+  margin-top: 5px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-dim);
+  font: inherit;
+  cursor: pointer;
+}
+
+.zone-card__debug:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--text);
+}
+
+.debug {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.debug__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Checkerboard so transparent reference icons are distinguishable from dark crops. */
+.debug__crop {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  background-color: #202020;
+  background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
+    linear-gradient(-45deg, #2a2a2a 25%, transparent 25%);
+  background-size: 10px 10px;
+  flex: none;
+}
+
+.debug__text {
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 10px;
+  line-height: 1.35;
+  white-space: pre;
+  color: var(--text-dim);
+}
+
+.zone-card__out {
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.yield {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 5px;
+}
+
+.yield__item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 4px 1px 1px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.yield__item img {
+  width: 18px;
+  height: 18px;
+  image-rendering: auto;
+}
+
+.yield__n {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.hud-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  font-size: 12px;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+/* --- Calibration drag surface ----------------------------------------------------- */
+
+.capture-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  cursor: crosshair;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.capture-rect {
+  position: absolute;
+  border: 2px solid var(--accent);
+  background: rgba(51, 255, 153, 0.1);
+}
+
+.capture-help {
+  position: fixed;
+  left: 50%;
+  bottom: 48px;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+  white-space: pre-line;
+}
+
+/* Candidate buttons inside the debug panel: picking one corrects the slot. */
+.debug__pick {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  padding: 1px 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.debug__pick:hover {
+  background: rgba(206, 66, 43, 0.3);
+  color: var(--text);
+}
+
+.debug__pick.is-on {
+  border-color: var(--rust-orange);
+  color: var(--accent);
+}
+
+/* The strip fed to the stack-count reader, shown at native height so the text stays legible. */
+.debug__strip {
+  height: 22px;
+  max-width: 70px;
+  object-fit: contain;
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  flex: none;
+}
+
+/* The whole detail card as it was read, so a wrong answer can be blamed on the zone rather
+   than guessed at. Capped in width: the card is wide and the HUD card is not. */
+.debug__card {
+  display: block;
+  margin-top: 6px;
+  width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* --- Crafting tree of a single item, centred ---------------------------------------- */
+
+.tree {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* Wide enough for a full row of chips, but never wider than the screen: some items feed
+     into a hundred recipes and the list below has to stay readable rather than one per line. */
+  width: min(640px, 92vw);
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.8);
+  z-index: 180;
+}
+
+.tree__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tree__title {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--rust-amber);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree__pos {
+  color: var(--text-dim);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tree__btn {
+  min-width: 26px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tree__btn:hover:not(:disabled) {
+  background: var(--rust-orange);
+  border-color: var(--rust-orange);
+  color: #fff;
+}
+
+.tree__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.tree__body {
+  /* Same trick as .zone-card__scroll: without min-height 0 this flex child stretches the
+     panel past max-height instead of scrolling, and the long lists run off screen. */
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 12px;
+}
+
+.tree__body::-webkit-scrollbar {
+  width: 9px;
+}
+
+.tree__body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.tree__body::-webkit-scrollbar-thumb {
+  background: rgba(206, 66, 43, 0.5);
+}
+
+.tree__body::-webkit-scrollbar-thumb:hover {
+  background: var(--rust-orange);
+}
+
+.tree__hero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.tree__hero img {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.tree__meta {
+  color: var(--text-dim);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Whether the inventory holds enough of an ingredient. The border carries the meaning and a
+   faint tint backs it up, so the three states stay apart for a colour-blind reader too: only
+   "have" is filled, and the count in the chip says the rest. */
+.yield__item--have {
+  border: 1px solid #3ddc84;
+  background: rgba(61, 220, 132, 0.18);
+}
+
+.yield__item--partial {
+  border: 1px solid #e8912d;
+  background: rgba(232, 145, 45, 0.14);
+}
+
+.yield__item--missing {
+  border: 1px solid #d9463c;
+  background: rgba(217, 70, 60, 0.1);
+}
+
+/* Chips that lead somewhere are visibly clickable. */
+.yield__item--link {
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.yield__item--link:hover {
+  background: rgba(206, 66, 43, 0.28);
+  border-color: var(--rust-orange);
+}

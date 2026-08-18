@@ -1,0 +1,140 @@
+[
+  {
+    "items": [
+      "2module car",
+      "2module car chassis",
+      "vehicle.chassis.2mod"
+    ]
+  },
+  {
+    "items": [
+      "3module car",
+      "3module car chassis",
+      "vehicle.chassis.3mod"
+    ]
+  },
+  {
+    "items": [
+      "4module car",
+      "4module car chassis",
+      "vehicle.chassis.4mod"
+    ]
+  },
+  {
+    "items": [
+      "50cal.mounted",
+      "50cal.mounted.left",
+      "50cal.mounted.right",
+      "lmg.m249"
+    ]
+  },
+  {
+    "items": [
+      "ammo.rifle",
+      "ammo.snowballgun"
+    ]
+  },
+  {
+    "items": [
+      "ammo.rocket.seeker",
+      "ammo.rocket.smoke"
+    ]
+  },
+  {
+    "items": [
+      "box.wooden.large",
+      "storage_barrel_a"
+    ]
+  },
+  {
+    "items": [
+      "clothing.mannequin",
+      "mannequin"
+    ]
+  },
+  {
+    "items": [
+      "electric.audioalarm",
+      "spookyspeaker"
+    ]
+  },
+  {
+    "items": [
+      "electric.cabletunnel",
+      "flashlight.held"
+    ]
+  },
+  {
+    "items": [
+      "electric.simplelight",
+      "weaponrack.doublelight",
+      "weaponrack.light"
+    ]
+  },
+  {
+    "items": [
+      "geiger.counter",
+      "outbreak.sprayer"
+    ]
+  },
+  {
+    "items": [
+      "gloweyes",
+      "pumpkin"
+    ]
+  },
+  {
+    "items": [
+      "hazmatsuit_scientist",
+      "oubreak_scientist"
+    ]
+  },
+  {
+    "items": [
+      "horse.saddle",
+      "horse.saddle.single"
+    ]
+  },
+  {
+    "items": [
+      "minihelicopter.repair",
+      "rug.bear"
+    ]
+  },
+  {
+    "items": [
+      "mobilephone",
+      "walkietalkie"
+    ]
+  },
+  {
+    "items": [
+      "movembermoustachecard",
+      "santabeard"
+    ]
+  },
+  {
+    "items": [
+      "radiationremovetea",
+      "radiationresisttea"
+    ]
+  },
+  {
+    "items": [
+      "radiationremovetea.advanced",
+      "radiationresisttea.advanced"
+    ]
+  },
+  {
+    "items": [
+      "radiationremovetea.pure",
+      "radiationresisttea.pure"
+    ]
+  },
+  {
+    "items": [
+      "sunglasses03black",
+      "sunglasses03chrome"
+    ]
+  }
+]
