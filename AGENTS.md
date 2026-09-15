@@ -41,6 +41,18 @@ npm run audit-db         # optional quality check on the index
 
 Both accept `--rust-dir <path>`, or set `RUST_DIR` in the environment.
 
+Raid-planner data (`data/raid-structures.json`, `data/raid-damage.json`) is the exception:
+**hand-collected, never generated** — damage values are measured in game with all
+multipliers baked in, and crafting costs are not stored at all (the planner joins weapon
+shortnames against `recipes.json`). Audit it after every edit:
+
+```bash
+npm run audit-raid      # schema + recipe joins + collection coverage; non-zero on errors
+```
+
+Test screenshots for the HP reader live in gitignored `captures/raid/`, with expected
+values encoded in the filename (`wall-stone_320_500.png`, `negative_01.png`).
+
 ## Environment gotchas
 
 - **Windows is the dev target.** Electron must launch from the Windows side. The Node tools
