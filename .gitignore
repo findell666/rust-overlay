@@ -11,3 +11,5 @@ electron-dist.txt
 # someone's screen, and they do not belong in the repository.
 captures/
 logs/
+
+/temp
