@@ -1,0 +1,32 @@
+{
+  "_note": [
+    "Raid planner: structures and their maximum HP. Hand-collected, not extracted.",
+    "maxHp = HP of the fully built, healthy structure. null = not measured yet.",
+    "Building blocks (walls, foundations, floors...) are entities, not Rust items, so",
+    "their keys are synthetic, of the form <block>.<grade> (wall.stone, foundation.wood,",
+    "floor.metal, ...). Deployables (doors, high externals, barricades...) use their real",
+    "Rust item shortname.",
+    "category: free-form tag for the future hierarchical menu (block:twig / block:wood /",
+    "block:stone / block:metal / block:armored / door / gate / external / deployable).",
+    "The menu tree itself will be decided later from these tags.",
+    "Fill _patch with the game version the numbers were measured on."
+  ],
+  "_patch": null,
+  "structures": {
+    "wall.twig": { "name": "Twig Wall", "maxHp": null, "category": "block:twig" },
+    "wall.wood": { "name": "Wood Wall", "maxHp": null, "category": "block:wood" },
+    "wall.stone": { "name": "Stone Wall", "maxHp": null, "category": "block:stone" },
+    "wall.metal": { "name": "Metal Wall", "maxHp": null, "category": "block:metal" },
+    "wall.armored": { "name": "Armored Wall", "maxHp": null, "category": "block:armored" },
+
+    "door.hinged.wood": { "name": "Wooden Door", "maxHp": null, "category": "door" },
+    "door.hinged.metal": { "name": "Sheet Metal Door", "maxHp": null, "category": "door" },
+    "door.hinged.toptier": { "name": "Armored Door", "maxHp": null, "category": "door" },
+    "door.double.hinged.metal": { "name": "Sheet Metal Double Door", "maxHp": null, "category": "door" },
+
+    "wall.external.high.stone": { "name": "High External Stone Wall", "maxHp": null, "category": "external" },
+
+    "floor.ladder.hatch": { "name": "Ladder Hatch", "maxHp": null, "category": "deployable" },
+    "barricade.wood": { "name": "Wood Barricade", "maxHp": null, "category": "deployable" }
+  }
+}

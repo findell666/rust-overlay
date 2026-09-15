@@ -8,6 +8,7 @@
     "start": "node scripts/start.js",
     "build-db": "node tools/build-item-db.mjs",
     "audit-db": "node tools/audit-index.mjs",
+    "audit-raid": "node tools/audit-raid-db.mjs",
     "extract-bundle": "python3 tools/extract-bundle.py",
     "replay": "node tools/replay-capture.mjs",
     "sim-counts": "node tools/simulate-counts.mjs",
@@ -37,6 +38,8 @@
       "src/**/*",
       "data/items.json",
       "data/recipes.json",
+      "data/raid-structures.json",
+      "data/raid-damage.json",
       "assets/icon.*",
       "package.json",
       "!**/*.map"
