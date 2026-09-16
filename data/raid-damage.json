@@ -24,12 +24,23 @@
       "unit": "per charge",
       "usesPerCraft": 1,
       "damage": {
-        "wall.stone": null,
-        "wall.metal": null,
-        "wall.armored": null,
-        "door.hinged.metal": null,
-        "door.hinged.toptier": null,
-        "wall.external.high.stone": null
+        "wall.twig": 10,
+        "wall.wood": 250,
+        "wall.stone": 275, 
+        "wall.metal": 275,
+        "wall.armored": 275,
+        "door.hinged.wood": 200,
+        "door.hinged.metal": 250,
+        "door.garage": 440,
+        "door.hinged.toptier": 440,
+        "ladderhatch": 250,
+        "ladderhatch.armored": 440,
+        "wall.external.high.wood": 495,
+        "gate.external.high.wood": 495,
+        "wall.external.high.stone": 275,
+        "gate.external.high.stone": 275,
+        "shopfront.wood": 500,
+        "shopfront.metal": 275
       }
     },
     "explosive.satchel": {
