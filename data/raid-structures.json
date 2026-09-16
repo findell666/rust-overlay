@@ -9,24 +9,108 @@
     "category: free-form tag for the future hierarchical menu (block:twig / block:wood /",
     "block:stone / block:metal / block:armored / door / gate / external / deployable).",
     "The menu tree itself will be decided later from these tags.",
-    "Fill _patch with the game version the numbers were measured on."
+    "Fill _patch with the game version the numbers were measured on.",
+    "sides: set to true on structures whose soft/hard faces take different damage from",
+    "side-sensitive weapons (walls, foundations...). The side-specific damage values live",
+    "in raid-damage.json as <key>.soft / <key>.hard entries; this file never has per-side",
+    "entries, maxHp is the same on both faces."
   ],
   "_patch": null,
   "structures": {
-    "wall.twig": { "name": "Twig Wall", "maxHp": null, "category": "block:twig" },
-    "wall.wood": { "name": "Wood Wall", "maxHp": null, "category": "block:wood" },
-    "wall.stone": { "name": "Stone Wall", "maxHp": null, "category": "block:stone" },
-    "wall.metal": { "name": "Metal Wall", "maxHp": null, "category": "block:metal" },
-    "wall.armored": { "name": "Armored Wall", "maxHp": null, "category": "block:armored" },
-
-    "door.hinged.wood": { "name": "Wooden Door", "maxHp": null, "category": "door" },
-    "door.hinged.metal": { "name": "Sheet Metal Door", "maxHp": null, "category": "door" },
-    "door.hinged.toptier": { "name": "Armored Door", "maxHp": null, "category": "door" },
-    "door.double.hinged.metal": { "name": "Sheet Metal Double Door", "maxHp": null, "category": "door" },
-
-    "wall.external.high.stone": { "name": "High External Stone Wall", "maxHp": null, "category": "external" },
-
-    "floor.ladder.hatch": { "name": "Ladder Hatch", "maxHp": null, "category": "deployable" },
-    "barricade.wood": { "name": "Wood Barricade", "maxHp": null, "category": "deployable" }
+    "wall.twig": {
+      "name": "Twig Wall",
+      "maxHp": 10,
+      "category": "block:twig"
+    },
+    "wall.wood": {
+      "name": "Wood Wall",
+      "maxHp": null,
+      "category": "block:wood"
+    },
+    "wall.stone": {
+      "name": "Stone Wall",
+      "maxHp": null,
+      "category": "block:stone"
+    },
+    "wall.metal": {
+      "name": "Metal Wall",
+      "maxHp": null,
+      "category": "block:metal"
+    },
+    "wall.armored": {
+      "name": "Armored Wall",
+      "maxHp": null,
+      "category": "block:armored"
+    },
+    "door.hinged.wood": {
+      "name": "Wooden Door",
+      "maxHp": null,
+      "category": "door"
+    },
+    "door.hinged.metal": {
+      "name": "Sheet Metal Door",
+      "maxHp": null,
+      "category": "door"
+    },
+    "door.hinged.toptier": {
+      "name": "Armored Door",
+      "maxHp": null,
+      "category": "door"
+    },
+    "door.double.hinged.metal": {
+      "name": "Sheet Metal Double Door",
+      "maxHp": null,
+      "category": "door"
+    },
+    "wall.external.high.stone": {
+      "name": "High External Stone Wall",
+      "maxHp": null,
+      "category": "external"
+    },
+    "floor.ladder.hatch": {
+      "name": "Ladder Hatch",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "barricade.wood": {
+      "name": "Wood Barricade",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "wall.frame.garagedoor": {
+      "name": "Garage Door",
+      "maxHp": null,
+      "category": "door"
+    },
+    "floor.ladder.hatch.toptier": {
+      "name": "Armored Ladder Hatch",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "wall.external.high": {
+      "name": "High External Wooden Wall",
+      "maxHp": null,
+      "category": "external"
+    },
+    "gates.external.high.wood": {
+      "name": "High External Wooden Gate",
+      "maxHp": null,
+      "category": "external"
+    },
+    "gates.external.high.stone": {
+      "name": "High External Stone Gate",
+      "maxHp": null,
+      "category": "external"
+    },
+    "wall.frame.shopfront": {
+      "name": "Shop Front",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "wall.frame.shopfront.metal": {
+      "name": "Metal Shop Front",
+      "maxHp": null,
+      "category": "deployable"
+    }
   }
 }

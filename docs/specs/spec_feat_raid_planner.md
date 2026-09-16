@@ -40,8 +40,6 @@ Finally, the tool will have to provide at least one suggestion per workbench tie
 
 Raidable game structures are manually recorded in `data/raid-structures.json` (JSON in data/ is the repo convention for data).
 
-<ToDo>Some craftable structures (e.g. barricades, doors) have a known shortname already featured in `data/recipes.json`. However, we don't know the shortnames for building structures (e.g. sheet metal wall, twig triangle foundation) and a preliminary internet search hasn't helped. Can these shortnames be extracted from the Rust game files or somewhere we missed online, or should the user simply create a custom shortname syntax when filling in `data/raid-structures.json`?</ToDo>
-
 Damage data are manually recorded in `data/raid-damage.json`.
 
 Keying conventions (implemented in the templates, decided in session):
@@ -49,6 +47,7 @@ Keying conventions (implemented in the templates, decided in session):
 * Keys are Rust shortnames wherever the entity is an item (doors, high externals, barricades...).
 * **Ammo-based weapons are keyed by the consumable, not the launcher**: `ammo.rocket.basic`, not `rocket.launcher` — the consumable's recipe is the per-use cost.
 * **Building blocks are entities, not items**, so they have no shortname at all; they get synthetic `<block>.<grade>` keys (`wall.stone`, `foundation.wood`), used consistently in both `raid-structures.json` and `raid-damage.json`.
+* **Soft/hard sides**: when a weapon's damage depends on the face hit, the damage key gets an optional third segment: `<block>.<grade>.<side>` with `side` = `soft`|`hard` (e.g. `wall.stone.soft`). Dots always delimit segments (never `wood_soft`), and side keys are used **only** where the number actually differs (melee tools) — side-independent weapons (C4, rockets) keep the neutral key. Side variants exist only in `raid-damage.json`; `raid-structures.json` keeps one entry per structure (maxHp is side-independent) with an optional `sides: true` flag marking side-relevant structures. The audit tool resolves the suffix to the base structure and warns when the base lacks the flag.
 * `costItem`: set when the per-use cost is a different item's recipe (the flamethrower burns `lowgradefuel`); defaults to the weapon's own shortname.
 * `recipeOverride`: only for weapons with no recipe at all in `recipes.json` (found-only items) — provides `workbench` and `ingredients`.
 * `_patch` in both files records the game version the numbers were measured on.

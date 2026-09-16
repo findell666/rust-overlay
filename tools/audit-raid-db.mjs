@@ -41,6 +41,9 @@ for (const [id, s] of Object.entries(structures)) {
   if (typeof s?.category !== 'string' || !s.category) {
     warnings.push(`structure ${id}: no category tag (the menu tree will need it)`);
   }
+  if (s?.sides !== undefined && s.sides !== true) {
+    errors.push(`structure ${id}: "sides" must be true or omitted`);
+  }
 }
 
 // --- Weapons ----------------------------------------------------------------
@@ -110,16 +113,28 @@ for (const [id, w] of Object.entries(weapons)) {
     continue;
   }
   for (const [sid, value] of Object.entries(dmg)) {
-    if (!(sid in structures)) {
+    // Side-specific keys: a damage entry may add an optional ".soft"/".hard" suffix when
+    // the weapon's damage depends on which face is hit. The variant lives only here —
+    // structures keep a single entry, since maxHp does not depend on the side.
+    let base = sid;
+    let side = null;
+    if (sid.endsWith('.soft') || sid.endsWith('.hard')) {
+      base = sid.slice(0, -5);
+      side = sid.slice(-4);
+    }
+    if (!(base in structures)) {
       errors.push(`weapon ${id} -> ${sid}: unknown structure key (not in raid-structures.json)`);
       continue;
+    }
+    if (side && structures[base].sides !== true) {
+      warnings.push(`weapon ${id} -> ${sid}: side-specific damage but "${base}" is not flagged "sides": true`);
     }
     if (value === null) {
       warnings.push(`weapon ${id} -> ${sid}: damage not measured yet`);
     } else if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
       errors.push(`weapon ${id} -> ${sid}: damage must be a positive number (or null while unmeasured)`);
     } else {
-      coveredByDamage.add(sid);
+      coveredByDamage.add(base);
     }
   }
 }
