@@ -20,6 +20,7 @@ const els = {
   body: document.getElementById('panel-body'),
   foot: document.getElementById('panel-foot'),
   hudHint: document.getElementById('hud-hint'),
+  captureToast: document.getElementById('capture-toast'),
   tree: document.getElementById('tree'),
   captureLayer: document.getElementById('capture-layer'),
   captureRect: document.getElementById('capture-rect'),
@@ -1941,4 +1942,27 @@ window.overlay.onMenuState((open) => {
     els.hudHint.hidden = true;
       renderZones([]);
   }
+});
+
+// The capture hotkey fires while the overlay is invisible, so the result comes back as a
+// push from the main process. One file per keypress: a save that fails silently looks
+// exactly like a keypress that did nothing, so failures linger longer than successes.
+let captureToastTimer = null;
+window.overlay.onCaptureSaved(({ ok, file, error }) => {
+  const toast = els.captureToast;
+  clearTimeout(captureToastTimer);
+  toast.classList.remove('capture-toast--fading', 'capture-toast--error');
+  toast.textContent = ok
+    ? `Saved ${file.split(/[\\/]/).pop()}`
+    : `Capture failed: ${error}`;
+  if (!ok) toast.classList.add('capture-toast--error');
+  toast.hidden = false;
+
+  captureToastTimer = setTimeout(() => {
+    toast.classList.add('capture-toast--fading');
+    captureToastTimer = setTimeout(() => {
+      toast.hidden = true;
+      toast.classList.remove('capture-toast--fading', 'capture-toast--error');
+    }, 500);
+  }, ok ? 1500 : 3000);
 });

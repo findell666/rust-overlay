@@ -6,6 +6,8 @@ const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('overlay', {
   onConfig: (handler) => ipcRenderer.on('overlay:config', (_event, payload) => handler(payload)),
   onMenuState: (handler) => ipcRenderer.on('overlay:menu-state', (_event, open) => handler(open)),
+  onCaptureSaved: (handler) =>
+    ipcRenderer.on('overlay:capture-saved', (_event, payload) => handler(payload)),
 
   closeMenu: () => ipcRenderer.invoke('overlay:close-menu'),
   saveConfig: (patch) => ipcRenderer.invoke('overlay:save-config', patch),

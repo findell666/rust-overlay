@@ -15,6 +15,17 @@ const DEFAULTS = {
   // overlay's own panels. Raise this if cards still appear in saved captures.
   captureDelayMs: 180,
 
+  // Dev-build hotkey that saves a raw capture to captures/raid/ for the HP-reader corpus
+  // (see docs/specs/spec_feat_raid_planner.md). Never registered when the app is packaged:
+  // the corpus lives in the repo, which only the developer's machine has. Any Electron
+  // accelerator works; '' disables it.
+  captureHotkey: 'F7',
+
+  // Where the capture hotkey writes its PNGs. null = <repo>/captures/raid when running
+  // unpacked, <userData>/captures/raid when packaged (the latter only reachable if you
+  // build an unpacked dev package). Must be absolute when set; relative paths are ignored.
+  captureDir: null,
+
   // Rust install directory, only needed to display item icons. null = autodetect the
   // usual Steam locations; set it by hand if the game lives on another drive.
   rustDir: null,

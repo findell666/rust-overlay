@@ -526,6 +526,32 @@ body {
   pointer-events: none;
 }
 
+/* Capture-hotkey toast: same shape as the HUD hint, but fades instead of being closed.
+   A capture that fails to save must not pass silently — the corpus grows one file per
+   keypress, so a broken save looks like a lost keypress. */
+.capture-toast {
+  position: fixed;
+  left: 50%;
+  top: 28px;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  font-size: 12px;
+  color: var(--text);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease-in;
+}
+
+.capture-toast--error {
+  color: #ff6a4d;
+}
+
+.capture-toast--fading {
+  opacity: 0;
+}
+
 /* --- Calibration drag surface ----------------------------------------------------- */
 
 .capture-layer {

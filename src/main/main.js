@@ -19,7 +19,7 @@ const {
   Menu,
   shell,
 } = require('electron');
-const { join } = require('node:path');
+const { join, isAbsolute } = require('node:path');
 const { existsSync, readFileSync, writeFileSync, mkdirSync } = require('node:fs');
 const { pathToFileURL } = require('node:url');
 const config = require('./config');
@@ -330,6 +330,21 @@ function registerHotkey() {
     );
   }
 
+  // The raw-capture hotkey is a collection tool for the developer's corpus, so packaged
+  // builds never register it. Failure is a warning, not fatal: losing F7 costs nothing
+  // while the menu hotkey above is the one the overlay is useless without.
+  if (!app.isPackaged && config.get().captureHotkey) {
+    const captureAccelerator = config.get().captureHotkey;
+    const captured = globalShortcut.register(captureAccelerator, () => saveRaidCapture());
+    if (!captured) {
+      console.warn(
+        `[overlay] Could not register capture hotkey "${captureAccelerator}" — ` +
+          'another application owns it. Change "captureHotkey" in ' +
+          config.path()
+      );
+    }
+  }
+
   return ok;
 }
 
@@ -347,6 +362,9 @@ function announce(hotkeyRegistered) {
   console.log('  ╚══════════════════════════════════════════════════════╝');
   console.log('');
   console.log(`  Press ${hotkey} to open the menu.`);
+  if (!app.isPackaged && config.get().captureHotkey) {
+    console.log(`  Press ${config.get().captureHotkey} to save a capture to captures/raid/.`);
+  }
   console.log('');
   const follow = config.get().followGame;
   console.log(`  Screen     : ${bounds.width}x${bounds.height}`);
@@ -413,9 +431,11 @@ app.on('will-quit', () => {
 ipcMain.handle('overlay:close-menu', () => setInteractive(false));
 
 ipcMain.handle('overlay:save-config', (_event, patch) => {
-  const previousHotkey = config.get().hotkey;
+  const previous = config.get();
   const next = config.save(patch);
-  if (next.hotkey !== previousHotkey) registerHotkey();
+  if (next.hotkey !== previous.hotkey || next.captureHotkey !== previous.captureHotkey) {
+    registerHotkey();
+  }
   updateVisibility(); // toggling "follow the game" takes effect immediately
   refreshTray(); // the tray shows the same toggles, so it must not drift from the menu
   pushConfig();
@@ -490,7 +510,7 @@ ipcMain.handle('overlay:item-db', () => {
  * Capture happens on demand (the user asked for a calculation), never continuously —
  * that keeps the cost near zero and means no background frame pipeline to maintain.
  */
-ipcMain.handle('overlay:capture-screen', async () => {
+async function captureDisplay() {
   const display = screen.getPrimaryDisplay();
   const { width, height } = display.size;
 
@@ -537,4 +557,39 @@ ipcMain.handle('overlay:capture-screen', async () => {
       if (menuOpen) overlay.focus();
     }
   }
-});
+}
+
+ipcMain.handle('overlay:capture-screen', captureDisplay);
+
+/**
+ * The capture hotkey (dev builds): save a raw capture for the HP-reader corpus.
+ *
+ * The screenshot is grabbed through the exact same path as the recycler calculation, so
+ * the corpus matches what the raid planner will one day read — including the overlay
+ * hiding itself first. Files land under a raid-<timestamp> name, and the user renames
+ * them to the expected-value convention afterwards, in one batch.
+ */
+async function saveRaidCapture() {
+  try {
+    const shot = await captureDisplay();
+
+    let dir = join(OUTPUT_DIR(), 'captures', 'raid');
+    const { captureDir } = config.get();
+    if (captureDir && !isAbsolute(captureDir)) {
+      console.warn(`[overlay] "captureDir" must be an absolute path — ignoring "${captureDir}"`);
+    } else if (captureDir) {
+      dir = captureDir;
+    }
+    mkdirSync(dir, { recursive: true });
+
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const file = join(dir, `raid-${stamp}.png`);
+    writeFileSync(file, Buffer.from(shot.dataUrl.split(',')[1], 'base64'));
+
+    console.log(`[overlay] raid capture saved: ${file}`);
+    overlay?.webContents.send('overlay:capture-saved', { ok: true, file });
+  } catch (err) {
+    console.error('[overlay] raid capture failed:', err);
+    overlay?.webContents.send('overlay:capture-saved', { ok: false, error: String(err) });
+  }
+}

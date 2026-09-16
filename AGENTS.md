@@ -51,7 +51,9 @@ npm run audit-raid      # schema + recipe joins + collection coverage; non-zero 
 ```
 
 Test screenshots for the HP reader live in gitignored `captures/raid/`, with expected
-values encoded in the filename (`wall-stone_320_500.png`, `negative_01.png`).
+values encoded in the filename (`wall-stone_320_500.png`, `negative_01.png`). In dev builds
+the overlay registers an F7 global hotkey that saves a raw capture straight into that
+folder (`captureHotkey`/`captureDir` in `config.json`; never registered when packaged).
 
 ## Environment gotchas
 
