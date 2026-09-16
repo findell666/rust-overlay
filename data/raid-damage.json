@@ -1,16 +1,18 @@
 {
   "_note": [
     "Raid planner: damage dealt to structures, hand-collected. Not extracted.",
-    "Each damage value = what ONE use of the weapon actually deals to the structure in",
-    "game, with every multiplier already baked in (material weakness, heat damage, etc.).",
+    "Each damage value = what ONE FULL USE of the weapon actually deals to the structure",
+    "in game, with every multiplier already baked in (material weakness, heat damage, etc.).",
     "Measure it, never compute it. null = not measured yet.",
+    "A full use is: one charge/rocket/grenade for munitions (they fire once), and the whole",
+    "durability of one crafted tool for tools with durability (pickaxe, salvaged icepick...) —",
+    "i.e. for tools the value already covers all N hits of the crafted item, do NOT multiply",
+    "by anything. The flamethrower is measured per unit of low grade fuel spent.",
     "Keys are Rust shortnames so crafting cost and workbench tier join against",
     "data/recipes.json (checked by tools/audit-raid-db.mjs). Ammo-based weapons are keyed",
     "by the consumable, not the launcher: ammo.rocket.basic, not rocket.launcher.",
     "Structure keys must exist in data/raid-structures.json. Building blocks use the",
     "synthetic <block>.<grade> keys defined there.",
-    "usesPerCraft: durability for tools (hits per crafted item), 1 for placed/thrown",
-    "explosives, null = to measure. It converts damage-per-use into damage-per-craft.",
     "costItem: set when the per-use cost is a different item's recipe (the flamethrower",
     "burns lowgradefuel). Defaults to the weapon's own shortname.",
     "recipeOverride: only for weapons with no recipe at all in recipes.json (found-only",
@@ -22,11 +24,10 @@
     "explosive.timed": {
       "name": "Timed Explosive Charge",
       "unit": "per charge",
-      "usesPerCraft": 1,
       "damage": {
         "wall.twig": 10,
         "wall.wood": 250,
-        "wall.stone": 275, 
+        "wall.stone": 275,
         "wall.metal": 275,
         "wall.armored": 275,
         "door.hinged.wood": 200,
@@ -46,7 +47,6 @@
     "explosive.satchel": {
       "name": "Satchel Charge",
       "unit": "per charge",
-      "usesPerCraft": 1,
       "damage": {
         "wall.wood": null,
         "wall.stone": null,
@@ -57,7 +57,6 @@
     "ammo.rocket.basic": {
       "name": "Rocket",
       "unit": "per rocket",
-      "usesPerCraft": 1,
       "damage": {
         "wall.stone": null,
         "wall.metal": null,
@@ -69,7 +68,6 @@
     "ammo.rocket.fire": {
       "name": "Incendiary Rocket",
       "unit": "per rocket",
-      "usesPerCraft": 1,
       "damage": {
         "wall.wood": null,
         "door.hinged.wood": null
@@ -78,7 +76,6 @@
     "grenade.f1": {
       "name": "F1 Grenade",
       "unit": "per grenade",
-      "usesPerCraft": 1,
       "damage": {
         "wall.wood": null,
         "door.hinged.wood": null,
@@ -89,7 +86,6 @@
       "name": "Flamethrower",
       "unit": "per low grade fuel spent",
       "costItem": "lowgradefuel",
-      "usesPerCraft": null,
       "damage": {
         "wall.wood": null,
         "door.hinged.wood": null
@@ -97,8 +93,7 @@
     },
     "pickaxe": {
       "name": "Pickaxe",
-      "unit": "per hit",
-      "usesPerCraft": null,
+      "unit": "per crafted tool (full durability)",
       "damage": {
         "wall.stone": null,
         "door.hinged.wood": null,
@@ -107,8 +102,7 @@
     },
     "icepick.salvaged": {
       "name": "Salvaged Icepick",
-      "unit": "per hit",
-      "usesPerCraft": null,
+      "unit": "per crafted tool (full durability)",
       "damage": {
         "wall.stone": null,
         "door.hinged.metal": null

@@ -101,15 +101,9 @@ for (const [id, w] of Object.entries(weapons)) {
     warnings.push(`weapon ${id}: no workbench tier — it cannot be slotted into a tier-specific suggestion`);
   }
 
-  // usesPerCraft converts damage-per-use into damage-per-craft; null means unmeasured.
-  const upc = w?.usesPerCraft;
-  if (upc === null || upc === undefined) {
-    warnings.push(`weapon ${id}: usesPerCraft not measured yet`);
-  } else if (typeof upc !== 'number' || !Number.isInteger(upc) || upc < 1) {
-    errors.push(`weapon ${id}: usesPerCraft must be a positive integer (or null while unmeasured)`);
-  }
-
   // Damage entries: every key must be a known structure, every value measured or null.
+  // Values are per full use (one charge, or the whole durability of a crafted tool), so
+  // the number is already damage-per-craft — no conversion factor is involved.
   const dmg = w?.damage;
   if (typeof dmg !== 'object' || dmg === null || Object.keys(dmg).length === 0) {
     warnings.push(`weapon ${id}: no damage entries collected yet`);
