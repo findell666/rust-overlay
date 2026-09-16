@@ -32,16 +32,16 @@
         "wall.armored": 275,
         "door.hinged.wood": 200,
         "door.hinged.metal": 250,
-        "door.garage": 440,
+        "wall.frame.garagedoor": 440,
         "door.hinged.toptier": 440,
-        "ladderhatch": 250,
-        "ladderhatch.armored": 440,
-        "wall.external.high.wood": 495,
-        "gate.external.high.wood": 495,
+        "floor.ladder.hatch": 250,
+        "floor.ladder.hatch.toptier": 440,
+        "wall.external.high": 495,
+        "gates.external.high.wood": 495,
         "wall.external.high.stone": 275,
-        "gate.external.high.stone": 275,
-        "shopfront.wood": 500,
-        "shopfront.metal": 275
+        "gates.external.high.stone": 275,
+        "wall.frame.shopfront": 500,
+        "wall.frame.shopfront.metal": 275
       }
     },
     "explosive.satchel": {
