@@ -64,6 +64,11 @@ npm run extract-bundle  # data/recipes.json — recipes and recycler yields
 npm run audit-db        # optional: how separable the resulting index is
 ```
 
+One exception lives in the same folder: `data/raid-structures.json` and
+`data/raid-damage.json` are **hand-collected and must not be regenerated** — damage values
+are measured in game. Audit them after edits with `npm run audit-raid`; see
+`docs/specs/spec_feat_raid_planner.md` for the conventions.
+
 Both find Rust in the usual Steam locations. If yours is elsewhere:
 
 ```powershell
@@ -106,6 +111,7 @@ src/shared/      fingerprinting, shared by the renderer and the build tools
 data/            generated item and recipe databases (committed)
 tools/           database builders, simulators and diagnostics
 assets/          the generated icon
+docs/            developer and user documentation (specs/ holds feature designs)
 static/          screenshots used by the documentation
 ```
 

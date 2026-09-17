@@ -42,12 +42,17 @@ Running from source, a console window also prints a banner (a packaged build has
   ╚══════════════════════════════════════════════════════╝
 
   Press F9 to open the menu.
+  Press F7 to save a capture to captures/raid/.
 
   Screen     : 2560x1440
   Profile    : 2560x1440@1
   Config     : C:\Users\you\AppData\Roaming\rust-overlay\config.json
   Shown      : only while the "Rust" window is in front
 ```
+
+The `F7` line only appears when running from source: it saves a raw screenshot into
+`captures/raid/`, test material for the raid planner feature that is still in development
+and not part of the app. A small toast at the top of the screen confirms each save.
 
 By default the overlay only shows itself while Rust's window is in front, so the aim dot does
 not end up sitting on top of your browser. Every time the active window changes, the console

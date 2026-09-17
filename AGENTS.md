@@ -55,6 +55,11 @@ values encoded in the filename (`wall-stone_320_500.png`, `negative_01.png`). In
 the overlay registers an F7 global hotkey that saves a raw capture straight into that
 folder (`captureHotkey`/`captureDir` in `config.json`; never registered when packaged).
 
+The raid planner itself is specified in `docs/specs/spec_feat_raid_planner.md` — read it
+first when resuming that work. It holds the design decisions, the data conventions and the
+open questions (tagged `<ToDo>`). Current state: data collection tooling only — the F5
+feature, the HP reader and the suggestion algorithm are **not implemented yet**.
+
 ## Environment gotchas
 
 - **Windows is the dev target.** Electron must launch from the Windows side. The Node tools
@@ -98,3 +103,5 @@ marked prerelease automatically.
 
 - `docs/BUILDING.md` — build, DB regeneration, WSL setup, antivirus workaround.
 - `docs/HOW-IT-WORKS.md` — recognition pipeline and measured accuracy numbers.
+- `docs/USAGE.md` — user-facing guide; keep it in sync when a shipped feature changes.
+- `docs/specs/spec_feat_raid_planner.md` — raid planner design, decisions and open ToDos.
