@@ -26,6 +26,72 @@
   ],
   "_patch": null,
   "weapons": {
+    "ammo.grenadelauncher.buckshot"
+    "ammo.grenadelauncher.he"
+    "ammo.handmade.shell"
+    "ammo.mortar.basic"
+    "ammo.mortar.fragment"
+    "ammo.nailgun.nails"
+    "ammo.pistol"
+    "ammo.pistol.fire"
+    "ammo.pistol.hv"
+    "ammo.rifle"
+    "ammo.rifle.explosive"
+    "ammo.rifle.hv"
+    "ammo.rifle.incendiary"
+    "ammo.rocket.basic": {
+      "name": "Rocket",
+      "unit": "per rocket",
+      "damage": {
+        "wall.stone": null,
+        "wall.metal": null,
+        "wall.armored": null,
+        "door.hinged.metal": null,
+        "door.hinged.toptier": null
+      }
+    },
+    "ammo.rocket.fire": {
+      "name": "Incendiary Rocket",
+      "unit": "per rocket",
+      "damage": {
+        "wall.wood": null,
+        "door.hinged.wood": null
+      }
+    },
+    "ammo.rocket.hv"
+    "ammo.rocket.mlrs"
+    "ammo.rocket.sam"
+    "ammo.rocket.seeker"
+    "ammo.shotgun"
+    "ammo.shotgun.fire"
+    "ammo.shotgun.slug"
+    "arrow.bone"
+    "arrow.fire"
+    "arrow.hv"
+    "arrow.wooden"
+    "axe.salvaged"
+    "ballista.bolt.hammerhead"
+    "ballista.bolt.incendiary"
+    "ballista.bolt.piercer"
+    "ballista.bolt.pitchfork"
+    "bone.club"
+    "boomerang"
+    "cannonball"
+    "catapult.ammo.bee"
+    "catapult.ammo.boulder"
+    "catapult.ammo.explosive"
+    "catapult.ammo.incendiary"
+    "chainsaw"
+    "explosive.satchel": {
+      "name": "Satchel Charge",
+      "unit": "per charge",
+      "damage": {
+        "wall.wood": null,
+        "wall.stone": null,
+        "door.hinged.wood": null,
+        "door.hinged.metal": null
+      }
+    },
     "explosive.timed": {
       "name": "Timed Explosive Charge",
       "unit": "per charge",
@@ -49,44 +115,6 @@
         "wall.frame.shopfront.metal": 275
       }
     },
-    "explosive.satchel": {
-      "name": "Satchel Charge",
-      "unit": "per charge",
-      "damage": {
-        "wall.wood": null,
-        "wall.stone": null,
-        "door.hinged.wood": null,
-        "door.hinged.metal": null
-      }
-    },
-    "ammo.rocket.basic": {
-      "name": "Rocket",
-      "unit": "per rocket",
-      "damage": {
-        "wall.stone": null,
-        "wall.metal": null,
-        "wall.armored": null,
-        "door.hinged.metal": null,
-        "door.hinged.toptier": null
-      }
-    },
-    "ammo.rocket.fire": {
-      "name": "Incendiary Rocket",
-      "unit": "per rocket",
-      "damage": {
-        "wall.wood": null,
-        "door.hinged.wood": null
-      }
-    },
-    "grenade.f1": {
-      "name": "F1 Grenade",
-      "unit": "per grenade",
-      "damage": {
-        "wall.wood": null,
-        "door.hinged.wood": null,
-        "door.hinged.metal": null
-      }
-    },
     "flamethrower": {
       "name": "Flamethrower",
       "unit": "per low grade fuel spent",
@@ -96,6 +124,33 @@
         "door.hinged.wood": null
       }
     },
+    "grenade.beancan"
+    "grenade.bee"
+    "grenade.f1": {
+      "name": "F1 Grenade",
+      "unit": "per grenade",
+      "damage": {
+        "wall.wood": null,
+        "door.hinged.wood": null,
+        "door.hinged.metal": null
+      }
+    },
+    "grenade.flashbang"
+    "grenade.molotov"
+    "hammer.salvaged"
+    "hatchet"
+    "icepick.salvaged": {
+      "name": "Salvaged Icepick",
+      "unit": "per crafted tool (full durability)",
+      "damage": {
+        "wall.stone": null,
+        "door.hinged.metal": null
+      }
+    },
+    "jackhammer"
+    "knife.bone"
+    "knife.combat"
+    "longsword"
     "pickaxe": {
       "name": "Pickaxe",
       "unit": "per crafted tool (full durability)",
@@ -104,14 +159,7 @@
         "door.hinged.wood": null,
         "door.hinged.metal": null
       }
-    },
-    "icepick.salvaged": {
-      "name": "Salvaged Icepick",
-      "unit": "per crafted tool (full durability)",
-      "damage": {
-        "wall.stone": null,
-        "door.hinged.metal": null
-      }
     }
+    
   }
 }

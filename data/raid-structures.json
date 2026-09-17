@@ -151,7 +151,6 @@
       "maxHp": 500,
       "category": "deployable"
     },
-    // EXTERNAL WALLS & BARRICADES (WIP)
     "wall.external.high": {
       "name": "High External Wooden Wall",
       "maxHp": null,
@@ -201,6 +200,15 @@
       "name": "Wooden Barricade Cover",
       "maxHp": null,
       "category": "deployable"
-    }
+    },
+    "barricade.woodwire"
+    TODO TURRET, SAM SITE
+    TODO POWER SOURCES (water wheel, solar, windmill, generator)
+    TODO Vehicles (mini, scrappy, attack)
+    "attackhelicopter"
+    TODO floor grills, prison cell, wire mesh
+    TODO Vending machine
+    TODO hanging sign ornate
+    "cupboard.tool"
   }
 }
