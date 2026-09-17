@@ -13,82 +13,152 @@
     "sides: set to true on structures whose soft/hard faces take different damage from",
     "side-sensitive weapons (walls, foundations...). The side-specific damage values live",
     "in raid-damage.json as <key>.soft / <key>.hard entries; this file never has per-side",
-    "entries, maxHp is the same on both faces."
+    "entries, maxHp is the same on both faces.",
+    "We consider walls, wall frames, door frames, roofs, foundations and floors as walls",
+    "this keeps the document shorter as they all share the same HP and side properties.",
+    "Similarly, we consider both ramps and stairs as stairs.",
+    "we ignore double variants of doors - they have identical properties to single doors in terms of raiding"
   ],
   "_patch": null,
   "structures": {
     "wall.twig": {
       "name": "Twig Wall",
       "maxHp": 10,
-      "category": "block:twig"
+      "category": "block:twig",
+      "sides": true
     },
     "wall.wood": {
       "name": "Wood Wall",
-      "maxHp": null,
-      "category": "block:wood"
+      "maxHp": 250,
+      "category": "block:wood",
+      "sides": true
     },
     "wall.stone": {
       "name": "Stone Wall",
-      "maxHp": null,
-      "category": "block:stone"
+      "maxHp": 500,
+      "category": "block:stone",
+      "sides": true
     },
     "wall.metal": {
       "name": "Metal Wall",
-      "maxHp": null,
-      "category": "block:metal"
+      "maxHp": 1000,
+      "category": "block:metal",
+      "sides": true
     },
     "wall.armored": {
       "name": "Armored Wall",
-      "maxHp": null,
-      "category": "block:armored"
+      "maxHp": 2000,
+      "category": "block:armored",
+      "sides": true
+    },
+    "stairs.twig": {
+      "name": "Twig stairs",
+      "maxHp": 10,
+      "category": "block:twig",
+      "sides": false
+    },
+    "stairs.wood": {
+      "name": "Wood stairs",
+      "maxHp": 250,
+      "category": "block:wood",
+      "sides": false
+    },
+    "stairs.stone": {
+      "name": "Stone stairs",
+      "maxHp": 500,
+      "category": "block:stone",
+      "sides": false
+    },
+    "stairs.metal": {
+      "name": "Metal stairs",
+      "maxHp": 1000,
+      "category": "block:metal",
+      "sides": false
+    },
+    "stairs.armored": {
+      "name": "Armored stairs",
+      "maxHp": 2000,
+      "category": "block:armored",
+      "sides": false
     },
     "door.hinged.wood": {
       "name": "Wooden Door",
-      "maxHp": null,
+      "maxHp": 200,
       "category": "door"
     },
     "door.hinged.metal": {
       "name": "Sheet Metal Door",
-      "maxHp": null,
+      "maxHp": 250,
       "category": "door"
     },
     "door.hinged.toptier": {
       "name": "Armored Door",
-      "maxHp": null,
+      "maxHp": 1000,
       "category": "door"
-    },
-    "door.double.hinged.metal": {
-      "name": "Sheet Metal Double Door",
-      "maxHp": null,
-      "category": "door"
-    },
-    "wall.external.high.stone": {
-      "name": "High External Stone Wall",
-      "maxHp": null,
-      "category": "external"
-    },
-    "floor.ladder.hatch": {
-      "name": "Ladder Hatch",
-      "maxHp": null,
-      "category": "deployable"
-    },
-    "barricade.wood": {
-      "name": "Wood Barricade",
-      "maxHp": null,
-      "category": "deployable"
     },
     "wall.frame.garagedoor": {
       "name": "Garage Door",
-      "maxHp": null,
+      "maxHp": 600,
       "category": "door"
+    },
+    "floor.ladder.hatch": {
+      "name": "Ladder Hatch",
+      "maxHp": 250,
+      "category": "deployable"
     },
     "floor.ladder.hatch.toptier": {
       "name": "Armored Ladder Hatch",
+      "maxHp": 1000,
+      "category": "deployable"
+    },
+    "wall.frame.shopfront": {
+      "name": "Wood Shop Front",
+      "maxHp": 500,
+      "category": "deployable"
+    },
+    "wall.frame.shopfront.metal": {
+      "name": "Metal Shop Front",
+      "maxHp": 750,
+      "category": "deployable"
+    },
+    "shutter.metal.embrasure.a": {
+      "name": "Horizontal Sheet Metal Embrasure",
       "maxHp": null,
       "category": "deployable"
     },
+    "shutter.metal.embrasure.b": {
+      "name": "Vertical Sheet Metal Embrasure",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "wall.window.glass.reinforced": {
+      "name": "Reinforced glass win",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "wall.window.bars.wood": {
+      "name": "todo",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "wall.window.bars.toptier": {
+      "name": "todo",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "wall.window.bars.metal": {
+      "name": "todo",
+      "maxHp": 500,
+      "category": "deployable"
+    },
+    // EXTERNAL WALLS & BARRICADES (WIP)
     "wall.external.high": {
       "name": "High External Wooden Wall",
+      "maxHp": null,
+      "category": "external"
+    },
+    "wall.external.high.stone": {
+      "name": "High External Stone Wall",
       "maxHp": null,
       "category": "external"
     },
@@ -102,13 +172,33 @@
       "maxHp": null,
       "category": "external"
     },
-    "wall.frame.shopfront": {
-      "name": "Shop Front",
+    "barricade.wood": {
+      "name": "Wood Barricade",
       "maxHp": null,
       "category": "deployable"
     },
-    "wall.frame.shopfront.metal": {
-      "name": "Metal Shop Front",
+    "barricade.metal": {
+      "name": "Metal Barricade",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "barricade.concrete": {
+      "name": "Concrete Barricade",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "barricade.sandbags": {
+      "name": "Sandbag Barricade",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "barricade.stone": {
+      "name": "Stone Barricade",
+      "maxHp": null,
+      "category": "deployable"
+    },
+    "barricade.wood.cover": {
+      "name": "Wooden Barricade Cover",
       "maxHp": null,
       "category": "deployable"
     }
