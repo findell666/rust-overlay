@@ -21,6 +21,7 @@
   ],
   "_patch": null,
   "structures": {
+    "boat.custom"
     "wall.twig": {
       "name": "Twig Wall",
       "maxHp": 10,
@@ -151,6 +152,7 @@
       "maxHp": 500,
       "category": "deployable"
     },
+    "shutter.wood.a"
     "wall.external.high": {
       "name": "High External Wooden Wall",
       "maxHp": null,
@@ -202,13 +204,36 @@
       "category": "deployable"
     },
     "barricade.woodwire"
-    TODO TURRET, SAM SITE
-    TODO POWER SOURCES (water wheel, solar, windmill, generator)
-    TODO Vehicles (mini, scrappy, attack)
+    "spikes.floor"
+    "spikes.trap"
+    "autoturret"
+    "guntrap"
+    "samsite"
+    "generator.water"
+    "electric.solarpanel.large"
+    "generator.wind.scrap"
+    "electric.fuelgenerator.small"
+    "submarinesolo"
+    "submarineduo"
     "attackhelicopter"
-    TODO floor grills, prison cell, wire mesh
-    TODO Vending machine
-    TODO hanging sign ornate
+    "Minicopter"
+    "rhib"
+    "rowboat"
+    "scraptransportheli"
+    "floor.grill"
+    "wall.frame.cell"
+    "wall.frame.cell.gate"
+    "wall.frame.fence"
+    "wall.frame.fence.gate"
+    "wall.frame.netting"
+    "vending.machine"
+    "sign.hanging.ornate"
+    "sign.wooden.huge"
+    "sign.wooden.large"
+    "sign.wooden.medium"
+    "sign.wooden.small"
+    "sleepingbag"
+    "watchtower.wood"
     "cupboard.tool"
   }
 }

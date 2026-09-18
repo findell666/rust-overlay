@@ -151,6 +151,9 @@
     "knife.bone"
     "knife.combat"
     "longsword"
+    "mace"
+    "machete"
+    "military flamethrower"
     "pickaxe": {
       "name": "Pickaxe",
       "unit": "per crafted tool (full durability)",
@@ -160,6 +163,15 @@
         "door.hinged.metal": null
       }
     }
-    
+    "pitchfork"
+    "salvaged.cleaver"
+    "salvaged.sword"
+    "spear.stone"
+    "spear.wooden"
+    "speargun.spear"
+    "stone.pickaxe"
+    "stonehatchet"
+    "submarine.torpedo.straight"
+    "torch"
   }
 }
