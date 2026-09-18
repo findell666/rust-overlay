@@ -21,7 +21,12 @@
   ],
   "_patch": null,
   "structures": {
-    "boat.custom"
+    "boat.custom": {
+      "name": "Player-made boat",
+      "maxHp": null,
+      "category": "block:boat",
+      "sides": false
+    },
     "wall.twig": {
       "name": "Twig Wall",
       "maxHp": 10,
@@ -85,155 +90,320 @@
     "door.hinged.wood": {
       "name": "Wooden Door",
       "maxHp": 200,
-      "category": "door"
+      "category": "door",
+      "sides": false
     },
     "door.hinged.metal": {
       "name": "Sheet Metal Door",
       "maxHp": 250,
-      "category": "door"
+      "category": "door",
+      "sides": false
     },
     "door.hinged.toptier": {
       "name": "Armored Door",
       "maxHp": 1000,
-      "category": "door"
+      "category": "door",
+      "sides": false
     },
     "wall.frame.garagedoor": {
       "name": "Garage Door",
       "maxHp": 600,
-      "category": "door"
+      "category": "door",
+      "sides": false
     },
     "floor.ladder.hatch": {
       "name": "Ladder Hatch",
       "maxHp": 250,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "floor.ladder.hatch.toptier": {
       "name": "Armored Ladder Hatch",
       "maxHp": 1000,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "wall.frame.shopfront": {
       "name": "Wood Shop Front",
       "maxHp": 500,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "wall.frame.shopfront.metal": {
       "name": "Metal Shop Front",
       "maxHp": 750,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "shutter.metal.embrasure.a": {
       "name": "Horizontal Sheet Metal Embrasure",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "shutter.metal.embrasure.b": {
       "name": "Vertical Sheet Metal Embrasure",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "wall.window.glass.reinforced": {
-      "name": "Reinforced glass win",
+      "name": "Reinforced glass window",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "wall.window.bars.wood": {
       "name": "todo",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "wall.window.bars.toptier": {
       "name": "todo",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "wall.window.bars.metal": {
       "name": "todo",
       "maxHp": 500,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
-    "shutter.wood.a"
-    "wall.external.high": {
-      "name": "High External Wooden Wall",
+    "shutter.wood.a": {
+      "name": "shutter.wood.a",
       "maxHp": null,
-      "category": "external"
+      "category": "deployable",
+      "sides": false
+    },
+    "wall.external.high": {
+      "name": "wall.external.high",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
     },
     "wall.external.high.stone": {
-      "name": "High External Stone Wall",
+      "name": "wall.external.high.stone",
       "maxHp": null,
-      "category": "external"
+      "category": "deployable",
+      "sides": false
     },
     "gates.external.high.wood": {
-      "name": "High External Wooden Gate",
+      "name": "gates.external.high.wood",
       "maxHp": null,
-      "category": "external"
+      "category": "deployable",
+      "sides": false
     },
     "gates.external.high.stone": {
-      "name": "High External Stone Gate",
+      "name": "gates.external.high.stone",
       "maxHp": null,
-      "category": "external"
+      "category": "deployable",
+      "sides": false
     },
     "barricade.wood": {
-      "name": "Wood Barricade",
+      "name": "barricade.wood",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "barricade.metal": {
-      "name": "Metal Barricade",
+      "name": "barricade.metal",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "barricade.concrete": {
-      "name": "Concrete Barricade",
+      "name": "barricade.concrete",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "barricade.sandbags": {
-      "name": "Sandbag Barricade",
+      "name": "barricade.sandbags",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "barricade.stone": {
-      "name": "Stone Barricade",
+      "name": "barricade.stone",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
     "barricade.wood.cover": {
-      "name": "Wooden Barricade Cover",
+      "name": "barricade.wood.cover",
       "maxHp": null,
-      "category": "deployable"
+      "category": "deployable",
+      "sides": false
     },
-    "barricade.woodwire"
-    "spikes.floor"
-    "spikes.trap"
-    "autoturret"
-    "guntrap"
-    "samsite"
-    "generator.water"
-    "electric.solarpanel.large"
-    "generator.wind.scrap"
-    "electric.fuelgenerator.small"
-    "submarinesolo"
-    "submarineduo"
-    "attackhelicopter"
-    "Minicopter"
-    "rhib"
-    "rowboat"
-    "scraptransportheli"
-    "floor.grill"
-    "wall.frame.cell"
-    "wall.frame.cell.gate"
-    "wall.frame.fence"
-    "wall.frame.fence.gate"
-    "wall.frame.netting"
-    "vending.machine"
-    "sign.hanging.ornate"
-    "sign.wooden.huge"
-    "sign.wooden.large"
-    "sign.wooden.medium"
-    "sign.wooden.small"
-    "sleepingbag"
-    "watchtower.wood"
-    "cupboard.tool"
+    "barricade.woodwire": {
+      "name": "barricade.woodwire",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "spikes.floor": {
+      "name": "spikes.floor",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "spikes.trap": {
+      "name": "spikes.trap",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "autoturret": {
+      "name": "autoturret",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "guntrap": {
+      "name": "guntrap",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "samsite": {
+      "name": "samsite",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "generator.water": {
+      "name": "generator.water",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "electric.solarpanel.large": {
+      "name": "electric.solarpanel.large",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "generator.wind.scrap": {
+      "name": "generator.wind.scrap",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "electric.fuelgenerator.small": {
+      "name": "electric.fuelgenerator.small",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "submarinesolo": {
+      "name": "submarinesolo",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "submarineduo": {
+      "name": "submarineduo",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "attackhelicopter": {
+      "name": "attackhelicopter",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "Minicopter": {
+      "name": "Minicopter",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "rhib": {
+      "name": "rhib",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "rowboat": {
+      "name": "rowboat",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "scraptransportheli": {
+      "name": "scraptransportheli",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "floor.grill": {
+      "name": "floor.grill",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "wall.frame.cell": {
+      "name": "wall.frame.cell",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "wall.frame.cell.gate": {
+      "name": "wall.frame.cell.gate",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "wall.frame.fence": {
+      "name": "wall.frame.fence",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "wall.frame.fence.gate": {
+      "name": "wall.frame.fence.gate",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "wall.frame.netting": {
+      "name": "wall.frame.netting",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "vending.machine": {
+      "name": "vending.machine",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "sign.hanging.ornate": {
+      "name": "sign.hanging.ornate",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "sign.wooden.huge": {
+      "name": "sign.wooden.huge",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "sign.wooden.large": {
+      "name": "sign.wooden.large",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    },
+    "sign.wooden.medium": {
+      "name": "sign.wooden.medium",
+      "maxHp": null,
+      "category": "deployable",
+      "sides": false
+    }
   }
 }
