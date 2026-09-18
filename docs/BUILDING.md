@@ -66,7 +66,7 @@ npm run audit-db        # optional: how separable the resulting index is
 
 One exception lives in the same folder: `data/raid-structures.json` and
 `data/raid-damage.json` are **hand-collected and must not be regenerated** — damage values
-are measured in game. Audit them after edits with `npm run audit-raid`; see
+are measured in game. Audit them after edits with `npm run audit-raid -- -v`; see
 `docs/specs/spec_feat_raid_planner.md` for the conventions.
 
 Both find Rust in the usual Steam locations. If yours is elsewhere:

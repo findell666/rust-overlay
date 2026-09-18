@@ -72,7 +72,7 @@ The damage table above deliberately has **no cost/tier fields**: the planner joi
 
 ## Database auditing
 
-`tools/audit-raid-db.mjs` (run via `npm run audit-raid`) validates the hand-collected raid data after every edit. It exits non-zero on hard errors, so it can gate a release. Checks performed:
+`tools/audit-raid-db.mjs` (run via `npm run audit-raid -- -v`) validates the hand-collected raid data after every edit. It exits non-zero on hard errors, so it can gate a release. Checks performed:
 
 * **Structures** (`raid-structures.json`): `name` present; `maxHp` a positive number or `null` while unmeasured (warning); `category` tag present (warning).
 * **Weapons** (`raid-damage.json`): `name` present; `unit` present (warning).
@@ -82,6 +82,7 @@ The damage table above deliberately has **no cost/tier fields**: the planner joi
 * **Coverage report**: measured vs. outstanding damage pairs, unmeasured `maxHp` count, and structures not covered by any weapon.
 
 The hand-collected nature of the raid DBs and the audit command are also documented in `AGENTS.md`.
+Omit the `-- -v` or `-- -verbose` flag if you only need a summary of errors and warnings for the audit. 
 
 ## Testing
 

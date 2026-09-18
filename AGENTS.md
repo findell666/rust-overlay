@@ -47,7 +47,7 @@ multipliers baked in, and crafting costs are not stored at all (the planner join
 shortnames against `recipes.json`). Audit it after every edit:
 
 ```bash
-npm run audit-raid      # schema + recipe joins + collection coverage; non-zero on errors
+npm run audit-raid -- -verbose     # schema + recipe joins + collection coverage; non-zero on errors
 ```
 
 Test screenshots for the HP reader live in gitignored `captures/raid/`, with expected

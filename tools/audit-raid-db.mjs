@@ -22,9 +22,17 @@ const structures = read('raid-structures.json').structures ?? {};
 const weapons = read('raid-damage.json').weapons ?? {};
 const recipes = read('recipes.json').recipes ?? {};
 const items = new Set(read('items.json').items.map((it) => it.shortname));
+const verbose = process.argv.slice(2).some((arg) => arg === '--verbose' || arg === '-v');
 
 const errors = [];
 const warnings = [];
+const warningCounts = new Map();
+const discrepancies = [];
+
+const warn = (type, message) => {
+  warnings.push(message);
+  warningCounts.set(type, (warningCounts.get(type) ?? 0) + 1);
+};
 
 // --- Structures -------------------------------------------------------------
 // maxHp is null while the value is still unmeasured; anything else must be a real HP.
@@ -34,15 +42,15 @@ for (const [id, s] of Object.entries(structures)) {
     errors.push(`structure ${id}: missing or empty "name"`);
   }
   if (s?.maxHp === null || s?.maxHp === undefined) {
-    warnings.push(`structure ${id}: maxHp not measured yet`);
+    warn('unmeasured maxHp', `structure ${id}: maxHp not measured yet`);
   } else if (typeof s.maxHp !== 'number' || !Number.isFinite(s.maxHp) || s.maxHp <= 0) {
     errors.push(`structure ${id}: maxHp must be a positive number (or null while unmeasured)`);
   }
   if (typeof s?.category !== 'string' || !s.category) {
-    warnings.push(`structure ${id}: no category tag (the menu tree will need it)`);
+    warn('missing category', `structure ${id}: no category tag (the menu tree will need it)`);
   }
-  if (s?.sides !== undefined && s.sides !== true) {
-    errors.push(`structure ${id}: "sides" must be true or omitted`);
+  if (s?.sides !== undefined && typeof s.sides !== 'boolean') {
+    errors.push(`structure ${id}: "sides" must be a boolean when present`);
   }
 }
 
@@ -57,7 +65,7 @@ for (const [id, w] of Object.entries(weapons)) {
     errors.push(`weapon ${id}: missing or empty "name"`);
   }
   if (typeof w?.unit !== 'string' || !w.unit) {
-    warnings.push(`weapon ${id}: missing "unit" (what one damage value corresponds to)`);
+    warn('missing unit', `weapon ${id}: missing "unit" (what one damage value corresponds to)`);
   }
 
   // Cost resolution: recipes.json entry, possibly via costItem, or an explicit override.
@@ -67,7 +75,7 @@ for (const [id, w] of Object.entries(weapons)) {
   let tier = null;
 
   if (override && recipe) {
-    warnings.push(`weapon ${id}: recipeOverride present but recipes.json has "${costId}" — drop the override`);
+    warn('redundant recipe override', `weapon ${id}: recipeOverride present but recipes.json has "${costId}" — drop the override`);
   }
   if (override) {
     const t = override.workbench;
@@ -84,7 +92,7 @@ for (const [id, w] of Object.entries(weapons)) {
     } else {
       for (const [shortname, qty] of Object.entries(ing)) {
         if (!items.has(shortname)) {
-          warnings.push(`weapon ${id}: override ingredient "${shortname}" is not a known item shortname`);
+          warn('unknown override ingredient', `weapon ${id}: override ingredient "${shortname}" is not a known item shortname`);
         }
         if (typeof qty !== 'number' || !Number.isFinite(qty) || qty <= 0) {
           errors.push(`weapon ${id}: override ingredient "${shortname}" needs a positive quantity`);
@@ -93,7 +101,7 @@ for (const [id, w] of Object.entries(weapons)) {
     }
   } else if (recipe) {
     if (!recipe.userCraftable) {
-      warnings.push(`weapon ${id}: recipe for "${costId}" exists but is not user-craftable — treat as found-only`);
+      warn('non-craftable recipe', `weapon ${id}: recipe for "${costId}" exists but is not user-craftable — treat as found-only`);
     }
     tier = recipe.workbench;
   } else {
@@ -101,7 +109,7 @@ for (const [id, w] of Object.entries(weapons)) {
   }
 
   if (tier === null || tier === undefined) {
-    warnings.push(`weapon ${id}: no workbench tier — it cannot be slotted into a tier-specific suggestion`);
+    warn('missing workbench tier', `weapon ${id}: no workbench tier — it cannot be slotted into a tier-specific suggestion`);
   }
 
   // Damage entries: every key must be a known structure, every value measured or null.
@@ -109,9 +117,32 @@ for (const [id, w] of Object.entries(weapons)) {
   // the number is already damage-per-craft — no conversion factor is involved.
   const dmg = w?.damage;
   if (typeof dmg !== 'object' || dmg === null || Object.keys(dmg).length === 0) {
-    warnings.push(`weapon ${id}: no damage entries collected yet`);
+    warn('missing damage table', `weapon ${id}: no damage entries collected yet`);
+    for (const sid of Object.keys(structures)) discrepancies.push(`weapon ${id} -> ${sid}: missing damage entry`);
     continue;
   }
+
+  const sideKeys = new Map();
+  for (const sid of Object.keys(dmg)) {
+    if (sid.endsWith('.soft') || sid.endsWith('.hard')) {
+      const base = sid.slice(0, -5);
+      const sides = sideKeys.get(base) ?? new Set();
+      sides.add(sid.slice(-4));
+      sideKeys.set(base, sides);
+    }
+  }
+  for (const [base, sides] of sideKeys) {
+    if (sides.size !== 2) {
+      discrepancies.push(`weapon ${id} -> ${base}: side-specific damage must include both .soft and .hard entries`);
+    }
+  }
+
+  for (const sid of Object.keys(structures)) {
+    if (!(sid in dmg) && !(`${sid}.soft` in dmg) && !(`${sid}.hard` in dmg)) {
+      discrepancies.push(`weapon ${id} -> ${sid}: missing damage entry`);
+    }
+  }
+
   for (const [sid, value] of Object.entries(dmg)) {
     // Side-specific keys: a damage entry may add an optional ".soft"/".hard" suffix when
     // the weapon's damage depends on which face is hit. The variant lives only here —
@@ -127,10 +158,10 @@ for (const [id, w] of Object.entries(weapons)) {
       continue;
     }
     if (side && structures[base].sides !== true) {
-      warnings.push(`weapon ${id} -> ${sid}: side-specific damage but "${base}" is not flagged "sides": true`);
+      discrepancies.push(`weapon ${id} -> ${sid}: side-specific damage but "${base}" is not flagged "sides": true`);
     }
     if (value === null) {
-      warnings.push(`weapon ${id} -> ${sid}: damage not measured yet`);
+      warn('unmeasured damage', `weapon ${id} -> ${sid}: damage not measured yet`);
     } else if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
       errors.push(`weapon ${id} -> ${sid}: damage must be a positive number (or null while unmeasured)`);
     } else {
@@ -143,25 +174,40 @@ for (const [id, w] of Object.entries(weapons)) {
 
 const structureCount = Object.keys(structures).length;
 const weaponCount = Object.keys(weapons).length;
-const unmeasuredDamage = warnings.filter((x) => x.includes('damage not measured')).length;
-const unmeasuredHp = warnings.filter((x) => x.includes('maxHp not measured')).length;
+const unmeasuredDamage = warningCounts.get('unmeasured damage') ?? 0;
+const unmeasuredHp = warningCounts.get('unmeasured maxHp') ?? 0;
 const uncovered = Object.keys(structures).filter((sid) => !coveredByDamage.has(sid));
+const summary = (includeUncoveredList) => {
+  console.log(`Structures              : ${structureCount} (${unmeasuredHp} maxHp unmeasured)`);
+  console.log(`Weapons                 : ${weaponCount}`);
+  let pairs = 0, measured = 0;
+  for (const w of Object.values(weapons)) {
+    if (!w?.damage) continue;
+    for (const v of Object.values(w.damage)) {
+      pairs++;
+      if (typeof v === 'number') measured++;
+    }
+  }
+  console.log(`Damage pairs            : ${measured}/${pairs} measured (${unmeasuredDamage} outstanding)`);
+  console.log(`Structures w/o any data : ${uncovered.length}${includeUncoveredList && uncovered.length ? ' (' + uncovered.join(', ') + ')' : ''}`);
+  console.log(`Errors                  : ${errors.length}`);
+  console.log(`Warnings                : ${warnings.length} (${unmeasuredDamage} unmeasured damage, ${unmeasuredHp} unmeasured maxHp)`);
+  console.log(`Discrepancies           : ${discrepancies.length}`);
+};
 
-console.log(`Structures              : ${structureCount} (${unmeasuredHp} maxHp unmeasured)`);
-console.log(`Weapons                 : ${weaponCount}`);
-let pairs = 0, measured = 0;
-for (const w of Object.values(weapons)) {
-  if (!w?.damage) continue;
-  for (const v of Object.values(w.damage)) {
-    pairs++;
-    if (typeof v === 'number') measured++;
+if (verbose) {
+  summary(true);
+  for (const e of errors) console.log(`  ERROR   ${e}`);
+  for (const w of warnings) console.log(`  warn    ${w}`);
+  for (const d of discrepancies) console.log(`  diff    ${d}`);
+  console.log('\nSummary:');
+  console.log(`Errors: ${errors.length} | Warnings: ${warnings.length} | Discrepancies: ${discrepancies.length}`);
+} else {
+  summary(false);
+  console.log('\nWarning types:');
+  for (const [type, count] of [...warningCounts].sort(([a], [b]) => a.localeCompare(b))) {
+    console.log(`  ${type}: ${count}`);
   }
 }
-console.log(`Damage pairs            : ${measured}/${pairs} measured (${unmeasuredDamage} outstanding)`);
-console.log(`Structures w/o any data : ${uncovered.length}${uncovered.length ? ' (' + uncovered.join(', ') + ')' : ''}`);
-console.log(`\nErrors   : ${errors.length}`);
-for (const e of errors) console.log(`  ERROR   ${e}`);
-console.log(`Warnings : ${warnings.length}`);
-for (const w of warnings) console.log(`  warn    ${w}`);
 
 if (errors.length) process.exit(1);
