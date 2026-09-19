@@ -93,7 +93,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.grenadelauncher.he": {
@@ -163,7 +164,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.handmade.shell": {
@@ -233,7 +235,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.mortar.basic": {
@@ -303,7 +306,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.mortar.fragment": {
@@ -373,7 +377,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.nailgun.nails": {
@@ -443,7 +448,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.pistol": {
@@ -513,7 +519,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.pistol.fire": {
@@ -583,7 +590,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.pistol.hv": {
@@ -653,7 +661,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rifle": {
@@ -723,7 +732,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rifle.explosive": {
@@ -793,7 +803,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rifle.hv": {
@@ -863,7 +874,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rifle.incendiary": {
@@ -933,7 +945,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rocket.basic": {
@@ -1003,7 +1016,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rocket.fire": {
@@ -1073,7 +1087,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rocket.hv": {
@@ -1143,7 +1158,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rocket.mlrs": {
@@ -1213,7 +1229,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rocket.sam": {
@@ -1283,7 +1300,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.rocket.seeker": {
@@ -1353,7 +1371,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.shotgun": {
@@ -1423,7 +1442,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.shotgun.fire": {
@@ -1493,7 +1513,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ammo.shotgun.slug": {
@@ -1563,7 +1584,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "arrow.bone": {
@@ -1633,7 +1655,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "arrow.fire": {
@@ -1703,7 +1726,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "arrow.hv": {
@@ -1773,7 +1797,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "arrow.wooden": {
@@ -1843,7 +1868,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "axe.salvaged": {
@@ -1913,7 +1939,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ballista.bolt.hammerhead": {
@@ -1983,7 +2010,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ballista.bolt.incendiary": {
@@ -2053,7 +2081,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ballista.bolt.piercer": {
@@ -2123,7 +2152,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "ballista.bolt.pitchfork": {
@@ -2193,7 +2223,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "bone.club": {
@@ -2263,7 +2294,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "boomerang": {
@@ -2333,7 +2365,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "cannonball": {
@@ -2403,7 +2436,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "catapult.ammo.bee": {
@@ -2473,7 +2507,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "catapult.ammo.boulder": {
@@ -2543,7 +2578,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "catapult.ammo.explosive": {
@@ -2613,7 +2649,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "catapult.ammo.incendiary": {
@@ -2683,7 +2720,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "chainsaw": {
@@ -2753,7 +2791,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "explosive.satchel": {
@@ -2823,7 +2862,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "explosive.timed": {
@@ -2893,7 +2933,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "flamethrower": {
@@ -2963,7 +3004,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "grenade.beancan": {
@@ -3033,7 +3075,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "grenade.bee": {
@@ -3103,7 +3146,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "grenade.f1": {
@@ -3173,7 +3217,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "grenade.flashbang": {
@@ -3243,7 +3288,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "grenade.molotov": {
@@ -3313,7 +3359,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "hammer.salvaged": {
@@ -3383,7 +3430,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "hatchet": {
@@ -3453,7 +3501,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "icepick.salvaged": {
@@ -3523,7 +3572,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "jackhammer": {
@@ -3593,7 +3643,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "knife.bone": {
@@ -3663,7 +3714,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "knife.combat": {
@@ -3733,7 +3785,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "longsword": {
@@ -3803,7 +3856,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "mace": {
@@ -3873,7 +3927,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "machete": {
@@ -3943,7 +3998,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "military flamethrower": {
@@ -4013,7 +4069,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "pickaxe": {
@@ -4083,7 +4140,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "pitchfork": {
@@ -4153,7 +4211,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "salvaged.cleaver": {
@@ -4223,7 +4282,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "salvaged.sword": {
@@ -4293,7 +4353,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "spear.stone": {
@@ -4363,7 +4424,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "spear.wooden": {
@@ -4433,7 +4495,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "speargun.spear": {
@@ -4503,7 +4566,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "stone.pickaxe": {
@@ -4573,7 +4637,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "stonehatchet": {
@@ -4643,7 +4708,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "submarine.torpedo.straight": {
@@ -4713,7 +4779,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     },
     "torch": {
@@ -4783,7 +4850,8 @@
         "sign.hanging.ornate": null,
         "sign.wooden.huge": null,
         "sign.wooden.large": null,
-        "sign.wooden.medium": null
+        "sign.wooden.medium": null,
+        "sign.wooden.small": null
       }
     }
   }

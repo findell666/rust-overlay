@@ -137,31 +137,31 @@
     },
     "shutter.metal.embrasure.a": {
       "name": "Horizontal Sheet Metal Embrasure",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "shutter.metal.embrasure.b": {
       "name": "Vertical Sheet Metal Embrasure",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "wall.window.glass.reinforced": {
       "name": "Reinforced glass window",
-      "maxHp": null,
+      "maxHp": 350,
       "category": "deployable",
       "sides": false
     },
     "wall.window.bars.wood": {
       "name": "todo",
-      "maxHp": null,
+      "maxHp": 250,
       "category": "deployable",
       "sides": false
     },
     "wall.window.bars.toptier": {
       "name": "todo",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
@@ -173,235 +173,241 @@
     },
     "shutter.wood.a": {
       "name": "shutter.wood.a",
-      "maxHp": null,
+      "maxHp": 200,
       "category": "deployable",
       "sides": false
     },
     "wall.external.high": {
       "name": "wall.external.high",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "wall.external.high.stone": {
       "name": "wall.external.high.stone",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "gates.external.high.wood": {
       "name": "gates.external.high.wood",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "gates.external.high.stone": {
       "name": "gates.external.high.stone",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "barricade.wood": {
       "name": "barricade.wood",
-      "maxHp": null,
+      "maxHp": 250,
       "category": "deployable",
       "sides": false
     },
     "barricade.metal": {
       "name": "barricade.metal",
-      "maxHp": null,
+      "maxHp": 600,
       "category": "deployable",
       "sides": false
     },
     "barricade.concrete": {
       "name": "barricade.concrete",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "barricade.sandbags": {
       "name": "barricade.sandbags",
-      "maxHp": null,
+      "maxHp": 200,
       "category": "deployable",
       "sides": false
     },
     "barricade.stone": {
       "name": "barricade.stone",
-      "maxHp": null,
+      "maxHp": 100,
       "category": "deployable",
       "sides": false
     },
     "barricade.wood.cover": {
       "name": "barricade.wood.cover",
-      "maxHp": null,
+      "maxHp": 80,
       "category": "deployable",
       "sides": false
     },
     "barricade.woodwire": {
       "name": "barricade.woodwire",
-      "maxHp": null,
+      "maxHp": 400,
       "category": "deployable",
       "sides": false
     },
     "spikes.floor": {
       "name": "spikes.floor",
-      "maxHp": null,
+      "maxHp": 100,
       "category": "deployable",
       "sides": false
     },
     "spikes.trap": {
       "name": "spikes.trap",
-      "maxHp": null,
+      "maxHp": 30,
       "category": "deployable",
       "sides": false
     },
     "autoturret": {
       "name": "autoturret",
-      "maxHp": null,
+      "maxHp": 1000,
       "category": "deployable",
       "sides": false
     },
     "guntrap": {
       "name": "guntrap",
-      "maxHp": null,
+      "maxHp": 300,
       "category": "deployable",
       "sides": false
     },
     "samsite": {
       "name": "samsite",
-      "maxHp": null,
+      "maxHp": 1000,
       "category": "deployable",
       "sides": false
     },
     "generator.water": {
       "name": "generator.water",
-      "maxHp": null,
+      "maxHp": 400,
       "category": "deployable",
       "sides": false
     },
     "electric.solarpanel.large": {
       "name": "electric.solarpanel.large",
-      "maxHp": null,
+      "maxHp": 100,
       "category": "deployable",
       "sides": false
     },
     "generator.wind.scrap": {
       "name": "generator.wind.scrap",
-      "maxHp": null,
+      "maxHp": 250,
       "category": "deployable",
       "sides": false
     },
     "electric.fuelgenerator.small": {
       "name": "electric.fuelgenerator.small",
-      "maxHp": null,
+      "maxHp": 100,
       "category": "deployable",
       "sides": false
     },
     "submarinesolo": {
       "name": "submarinesolo",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "submarineduo": {
       "name": "submarineduo",
-      "maxHp": null,
+      "maxHp": 700,
       "category": "deployable",
       "sides": false
     },
     "attackhelicopter": {
       "name": "attackhelicopter",
-      "maxHp": null,
+      "maxHp": 850,
       "category": "deployable",
       "sides": false
     },
     "Minicopter": {
       "name": "Minicopter",
-      "maxHp": null,
+      "maxHp": 750,
       "category": "deployable",
       "sides": false
     },
     "rhib": {
       "name": "rhib",
-      "maxHp": null,
+      "maxHp": 500,
       "category": "deployable",
       "sides": false
     },
     "rowboat": {
       "name": "rowboat",
-      "maxHp": null,
+      "maxHp": 400,
       "category": "deployable",
       "sides": false
     },
     "scraptransportheli": {
       "name": "scraptransportheli",
-      "maxHp": null,
+      "maxHp": 1000,
       "category": "deployable",
       "sides": false
     },
     "floor.grill": {
       "name": "floor.grill",
-      "maxHp": null,
+      "maxHp": 250,
       "category": "deployable",
       "sides": false
     },
     "wall.frame.cell": {
       "name": "wall.frame.cell",
-      "maxHp": null,
+      "maxHp": 300,
       "category": "deployable",
       "sides": false
     },
     "wall.frame.cell.gate": {
       "name": "wall.frame.cell.gate",
-      "maxHp": null,
+      "maxHp": 300,
       "category": "deployable",
       "sides": false
     },
     "wall.frame.fence": {
       "name": "wall.frame.fence",
-      "maxHp": null,
+      "maxHp": 100,
       "category": "deployable",
       "sides": false
     },
     "wall.frame.fence.gate": {
       "name": "wall.frame.fence.gate",
-      "maxHp": null,
+      "maxHp": 100,
       "category": "deployable",
       "sides": false
     },
     "wall.frame.netting": {
       "name": "wall.frame.netting",
-      "maxHp": null,
+      "maxHp": 100,
       "category": "deployable",
       "sides": false
     },
     "vending.machine": {
       "name": "vending.machine",
-      "maxHp": null,
+      "maxHp": 1250,
       "category": "deployable",
       "sides": false
     },
     "sign.hanging.ornate": {
       "name": "sign.hanging.ornate",
-      "maxHp": null,
+      "maxHp": 300,
       "category": "deployable",
       "sides": false
     },
     "sign.wooden.huge": {
       "name": "sign.wooden.huge",
-      "maxHp": null,
+      "maxHp": 200,
       "category": "deployable",
       "sides": false
     },
     "sign.wooden.large": {
       "name": "sign.wooden.large",
-      "maxHp": null,
+      "maxHp": 150,
       "category": "deployable",
       "sides": false
     },
     "sign.wooden.medium": {
       "name": "sign.wooden.medium",
-      "maxHp": null,
+      "maxHp": 100,
+      "category": "deployable",
+      "sides": false
+    },
+    "sign.wooden.small": {
+      "name": "sign.wooden.medium",
+      "maxHp": 50,
       "category": "deployable",
       "sides": false
     }
